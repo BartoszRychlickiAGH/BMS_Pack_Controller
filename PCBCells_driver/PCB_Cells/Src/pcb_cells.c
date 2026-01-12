@@ -204,13 +204,41 @@ HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusType
 	// saving prev status
 	pc->prevStatus = pc->currStatus;
 
-	// chaning current status
+	// changing current status
 	pc->currStatus = status;
 
 	return HAL_OK;
 }
 
+void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
 
+	static uint32_t lastTick = HAL_GetTick();
+
+	switch(pc->currStatus){
+	case PCBCELLS_ACTIVE:
+
+		// toggling LED state after 250ms
+		if(HAL_GetTick() - lastTick -1 >= 250){
+			HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
+
+			lastTick = HAL_GetTick() - 1;
+		}
+
+		// Turning off RED LED
+		HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_RESET);
+
+		break;
+	case PCBCELLS_ERROR:
+
+		// Turning off Green LED
+		HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, GPIO_PIN_RESET);
+
+		// Turning on RED LED
+		HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_SET);
+
+		break;
+	}
+}
 
 
 

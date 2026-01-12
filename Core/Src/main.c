@@ -21,7 +21,6 @@
 #include "adc.h"
 #include "can.h"
 #include "dma.h"
-#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -94,7 +93,6 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_CAN_Init();
-  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
   // Initialization of PCB Cells object
@@ -116,7 +114,9 @@ int main(void)
 		  case PCBCELLS_ACTIVE:
 
 			  if(PCBCells_Mode_Normal(&pcbCells) != HAL_OK){
-				  Error_Handler();
+				  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
+					  Error_Handler();
+				  }
 			  }
 
 			  break;
@@ -134,6 +134,9 @@ int main(void)
 
 			  break;
 	  }
+
+	 // Blink diode in order co-related to current Cells' PCB's state
+	 PCBCells_Mode_Blink(&pcbCells);
 
     /* USER CODE END WHILE */
 
