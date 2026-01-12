@@ -19,9 +19,6 @@
 #include "can_driver.h"
 #include "can_id_list.h"
 
-/* Macros ------------------------------------------------------------------------------------  */
-
-
 /* Typedefs ----------------------------------------------------------------------------------  */
 
 /*
@@ -30,7 +27,6 @@
 typedef enum{
 
 	PCBCELLS_ACTIVE = 0,
-	PCBCELLS_STANDBY,
 	PCBCELLS_ERROR
 
 }PCBCells_StatusTypeDef_e;
@@ -41,8 +37,16 @@ typedef enum{
 typedef struct{
 
 
+	ADC_HandleTypeDef   	hadc1;						/*<  Handle to ADC1  >*/
+	ADC_HandleTypeDef   	hadc2;						/*<  Handle to ADC2  >*/
 
+	ADC_ChannelsTypeDef 	cadc1;						/*< Channels of ADC1 >*/
+	ADC_ChannelsTypeDef 	cadc2;						/*< Channels of ADC2 >*/
 
+	ADC_BufferTypeDef   	badc1;						/*< Buffer of ADC1 in dual mode conversion >*/
+	ADC_BufferTypeDef   	badc2;						/*< Buffer of ADC2 in dual mode conversion >*/
+
+	uint8_t				PCBCells_temperatures[9];	/*< Array of converted values of thermistors' temperatures >*/
 
 }PCBCells_ADCTypeDef;
 
@@ -51,8 +55,9 @@ typedef struct{
  */
 typedef struct{
 
+	CAN_HandleTypeDef 		hcan;						/*<   Handle to CAN1   >*/
 
-
+	CAN_ScheduledMsgList 	CAN_msgBuffer;				/*< CAN messages buffer >*/
 
 }PCBCells_CANTypeDef;
 
@@ -62,9 +67,37 @@ typedef struct{
  */
 typedef struct{
 
+	PCBCells_ADCTypeDef 	 pcadc;						/*< PCB's Cells ADC handle >*/
+	PCBCells_CANTypeDef 	 pccan;						/*< PCB's Cells CAN handle >*/
 
+	TIM_HandleTypeDef   	 htim;						/*< Handle to TIM >*/
 
+	PCBCells_StatusTypeDef_e prevStatus;				/*< PCB Cells previous status, in case change of status occured >*/
+	PCBCells_StatusTypeDef_e currStatus;				/*< PCB Cells current status >*/
+
+	uint8_t 				 packetIndex : 3;			/*< Packet number (1 - 7) >*/
 
 }PCBCells_TypeDef;
+
+/* Macros ------------------------------------------------------------------------------------  */
+
+// TIM
+#define TIM_GREEN_LED TIM_CHANNEL_2
+
+// ADC1
+#define ADC1_CH1  	  ADC_CHANNEL_1
+#define ADC1_CH2      ADC_CHANNEL_2
+#define ADC1_CH3      ADC_CHANNEL_3
+#define ADC1_CH4      ADC_CHANNEL_4
+#define ADC1_CH11     ADC_CHANNEL_11
+
+// ADC2
+#define ADC2_CH1      ADC_CHANNEL_1
+#define ADC2_CH2      ADC_CHANNEL_2
+#define ADC2_CH3      ADC_CHANNEL_3
+#define ADC2_CH4      ADC_CHANNEL_4
+
+//PCB
+#define VCC_SUPPLY_VOLTAGE (3.3f)
 
 #endif /* PCB_CELLS_TYPES_H_ */

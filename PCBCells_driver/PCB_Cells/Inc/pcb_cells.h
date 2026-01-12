@@ -22,13 +22,24 @@
 /* Includes ----------------------------------------------------------------------------------  */
 #include "PCB_Cells_types.h"
 
-/* Macros ------------------------------------------------------------------------------------  */
+
+/* Functions prototypes ----------------------------------------------------------------------- */
+HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, ADC_HandleTypeDef* hadc2, CAN_HandleTypeDef* hcan);
+
+HAL_StatusTypeDef PCBCells_Mode_Normal(PCBCells_TypeDef* pc);
+
+HAL_StatusTypeDef PCBCells_Mode_Error(PCBCells_TypeDef* pc);
+
+HAL_StatusTypeDef PCBCells_Peripherals_Start(PCBCells_TypeDef* pc);
+
+HAL_StatusTypeDef PCBCells_Peripherals_Stop(PCBCells_TypeDef* pc);
+
+HAL_StatusTypeDef PCBCells_ConfigPCBIndex(PCBCells_TypeDef* pc);
+
+HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusTypeDef_e status);
 
 
-/* Typedefs ----------------------------------------------------------------------------------  */
-
-
-
+/* Macros ------------------------------------------------------------------------------------- */
 
 
 #endif /* PCB_CELLS_H_ */

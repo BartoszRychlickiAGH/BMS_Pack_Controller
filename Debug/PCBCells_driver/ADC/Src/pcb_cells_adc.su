@@ -1,0 +1,6 @@
+../PCBCells_driver/ADC/Src/pcb_cells_adc.c:37:19:PCBCells_ADC_ReadValues	16	static
+../PCBCells_driver/ADC/Src/pcb_cells_adc.c:52:19:PCBCells_ADC1_ReadChannels	24	static
+../PCBCells_driver/ADC/Src/pcb_cells_adc.c:73:19:PCBCells_ADC2_ReadChannels	24	static
+../PCBCells_driver/ADC/Src/pcb_cells_adc.c:94:19:PCBCells_ADC_ReadTemperature	56	static
+../PCBCells_driver/ADC/Src/pcb_cells_adc.c:150:7:PCBCells_ADC_NTC_calibrateTemperature	32	static
+../PCBCells_driver/ADC/Src/pcb_cells_adc.c:162:7:PCBCells_ADC_NTC_GetTemperature	24	static
