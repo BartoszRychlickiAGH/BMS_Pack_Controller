@@ -35,7 +35,10 @@ PCBCells_driver/PCB_Cells/Src/pcb_cells.o: \
  ../EKO_Drivers/ADC/Inc/adc_driver.h \
  ../EKO_Drivers/ADC/Inc/stm32_family.h \
  ../EKO_Drivers/CAN/Inc/can_driver.h ../EKO_Drivers/CAN/Inc/can_id_list.h \
- ../EKO_Drivers/CAN/Inc/can_id_list.h
+ ../EKO_Drivers/CAN/Inc/can_id_list.h \
+ ../PCBCells_driver/CAN/Inc/pcb_cells_can.h \
+ ../PCBCells_driver/PCB_Cells/Inc/PCB_Cells_types.h \
+ ../PCBCells_driver/ADC/Inc/pcb_cells_adc.h
 ../PCBCells_driver/PCB_Cells/Inc/pcb_cells.h:
 ../PCBCells_driver/PCB_Cells/Inc/PCB_Cells_types.h:
 ../Core/Inc/main.h:
@@ -74,3 +77,6 @@ PCBCells_driver/PCB_Cells/Src/pcb_cells.o: \
 ../EKO_Drivers/CAN/Inc/can_driver.h:
 ../EKO_Drivers/CAN/Inc/can_id_list.h:
 ../EKO_Drivers/CAN/Inc/can_id_list.h:
+../PCBCells_driver/CAN/Inc/pcb_cells_can.h:
+../PCBCells_driver/PCB_Cells/Inc/PCB_Cells_types.h:
+../PCBCells_driver/ADC/Inc/pcb_cells_adc.h:

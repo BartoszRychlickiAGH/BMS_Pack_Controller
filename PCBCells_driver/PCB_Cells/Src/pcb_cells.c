@@ -20,6 +20,8 @@
 
 /* Includes -----------------------------------------------------------------------------------  */
 #include "pcb_cells.h"
+#include "pcb_cells_can.h"
+#include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
 
@@ -62,7 +64,9 @@ HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, 
 	}
 
 	// Adding frames to CAN buffer
-
+	if(PCBCells_CAN_InitFrames(pc) != HAL_OK){
+		return HAL_ERROR;
+	}
 
 	//Init CAN
 	CAN_Init(&pc->pccan.hcan);
@@ -101,7 +105,9 @@ HAL_StatusTypeDef PCBCells_Mode_Normal(PCBCells_TypeDef* pc){
 	}
 
 	// Send Data via CAN
-
+	if(PCBCells_CAN_SendFrames(pc) != HAL_OK){
+		return HAL_ERROR;
+	}
 
 	return HAL_OK;
 }
@@ -129,7 +135,7 @@ HAL_StatusTypeDef PCBCells_Peripherals_Start(PCBCells_TypeDef* pc){
 	}
 
 	// Launching Dual Mode Conversion
-	if(HAL_ADCEx_MultiModeStart_DMA(&pc->pcadc.hadc1, &pc->pcadc.badc1, ADC_MAX_CHANNELS) != HAL_OK){
+	if(HAL_ADCEx_MultiModeStart_DMA(&pc->pcadc.hadc1, (uint32_t*)pc->pcadc.badc1.ddma.BufferADC_Master, ADC_MAX_CHANNELS) != HAL_OK){
 		return HAL_ERROR;
 	}
 

@@ -1,6 +1,6 @@
 PCBCells_driver/CAN/Src/pcb_cells_can.o: \
  ../PCBCells_driver/CAN/Src/pcb_cells_can.c \
- ../PCBCells_driver/CAN/Inc/PCB_Cells_CAN.h \
+ ../PCBCells_driver/CAN/Inc/pcb_cells_can.h \
  ../PCBCells_driver/PCB_Cells/Inc/PCB_Cells_types.h ../Core/Inc/main.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h \
  ../Core/Inc/stm32f3xx_hal_conf.h \
@@ -36,7 +36,7 @@ PCBCells_driver/CAN/Src/pcb_cells_can.o: \
  ../EKO_Drivers/ADC/Inc/stm32_family.h \
  ../EKO_Drivers/CAN/Inc/can_driver.h ../EKO_Drivers/CAN/Inc/can_id_list.h \
  ../EKO_Drivers/CAN/Inc/can_id_list.h
-../PCBCells_driver/CAN/Inc/PCB_Cells_CAN.h:
+../PCBCells_driver/CAN/Inc/pcb_cells_can.h:
 ../PCBCells_driver/PCB_Cells/Inc/PCB_Cells_types.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal.h:
