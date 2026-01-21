@@ -74,7 +74,7 @@ HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, uint32_t* Id){
 
 	// check if correct framesIndex
-	if(frameIndex > 9){
+	if(frameIndex >= 9){
 		return HAL_ERROR;
 	}
 

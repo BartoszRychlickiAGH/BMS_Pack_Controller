@@ -48,6 +48,7 @@
 
 /* USER CODE BEGIN PV */
 PCBCells_TypeDef  pcbCells;
+uint32_t lastTick; 			// tick variable for providing LEDs blinking
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/

@@ -24,7 +24,6 @@
 #include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
-static uint32_t lastTick; 		// static tick variable for providing LEDs blinking
 
 /* Functions' bodies --------------------------------------------------------------------------  */
 
