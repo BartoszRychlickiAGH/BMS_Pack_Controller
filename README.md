@@ -17,15 +17,18 @@ This version is refactor version of firmware.
 # Status
 
     Non-started stages:
-        - reading thermistors via ADC1 and ADC2
-
-    	- sending data via CAN2
+		-None
 
     Under construction stages:
-    - None
+		- None
+		
+	Under Tests:
+		- reading thermistors via ADC1 and ADC2
 
-    Completed stages:
-    - None
+    	- sending data via CAN2
+	
+	Completed stages:
+		- None
 
 # How to Run:
 
