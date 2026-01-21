@@ -80,7 +80,8 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 	}
 
 	// Calculating Id for ascending or descending order of IDs assignment
-	*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + (pc->packetIndex % 2 != 0) ? framesAscendingBaseId : framesDescendingBaseId;
+	*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10
+	       + ((pc->packetIndex % 2 != 0) ? framesAscendingBaseId : framesDescendingBaseId);
 
 
 	// Checking if correct Id was assigned
