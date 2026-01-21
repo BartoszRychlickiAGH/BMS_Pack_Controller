@@ -36,8 +36,7 @@ HAL_StatusTypeDef PCBCells_Peripherals_Stop(PCBCells_TypeDef* pc);
 
 HAL_StatusTypeDef PCBCells_ConfigPCBIndex(PCBCells_TypeDef* pc);
 
-HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusTypeDef_e status);
-
+void PCBCells_Mode_Blink(PCBCells_TypeDef* pc);
 
 /* Macros ------------------------------------------------------------------------------------- */
 
