@@ -5,3 +5,4 @@
 ../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:151:19:PCBCells_Peripherals_Stop	5
 ../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:176:19:PCBCells_ConfigPCBIndex	5
 ../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:197:19:PCBCells_Mode_Change	3
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:213:6:PCBCells_Mode_Blink	4
