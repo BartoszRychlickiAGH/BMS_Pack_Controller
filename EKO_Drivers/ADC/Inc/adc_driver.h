@@ -36,7 +36,7 @@ extern "C" {
 #define 			SQR_3				    3
 #define				SQR_4					4
 
-#define 			ADC_MAX_CHANNELS       16											// maximum number of ADC's channels
+#define 			ADC_MAX_CHANNELS       5											// maximum number of ADC's channels
 #define 			ADC_AVERAGED_MEASURES  5											// common number of measures from one channel to be averaged
 #define 			ADC_BUFF_SIZE 		   (ADC_AVERAGED_MEASURES * ADC_MAX_CHANNELS)	// ADC Buffers' Size, includes size of all channels and their number of averaged measures
 

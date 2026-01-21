@@ -47,6 +47,7 @@
 
 /* USER CODE BEGIN PV */
 PCBCells_TypeDef  pcbCells;
+uint32_t lastTick; 			// tick variable for providing LEDs blinking
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -106,6 +107,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  // reading current tick
+  lastTick = HAL_GetTick();
   while (1)
   {
 	  // Blink diode in order co-related to current Cells' PCB's state
@@ -139,7 +143,6 @@ int main(void)
 			  // handling error
 			  break;
 	  }
-
 
 
     /* USER CODE END WHILE */

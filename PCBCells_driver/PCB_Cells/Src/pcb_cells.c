@@ -20,9 +20,11 @@
 
 /* Includes -----------------------------------------------------------------------------------  */
 #include "pcb_cells.h"
+#include "pcb_cells_can.h"
+#include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
-static uint32_t lastTick; 		// static tick variable for providing LEDs blinking
+extern uint32_t lastTick;
 
 /* Functions' bodies --------------------------------------------------------------------------  */
 
@@ -35,7 +37,7 @@ HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, 
 
 	// Setting default status
 	pc->prevStatus = PCBCELLS_ACTIVE;
-	pc->currStatus = PCBCELLS_ACTIVE;;
+	pc->currStatus = PCBCELLS_ACTIVE;
 
 	// Reseting buffers
 	memset(pc->pcadc.PCBCells_temperatures, 0, sizeof(pc->pcadc.PCBCells_temperatures));
@@ -62,7 +64,9 @@ HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, 
 	}
 
 	// Adding frames to CAN buffer
-
+	if(PCBCells_CAN_InitFrames(pc) != HAL_OK){
+		return HAL_ERROR;
+	}
 
 	//Init CAN
 	CAN_Init(&pc->pccan.hcan);
@@ -101,7 +105,9 @@ HAL_StatusTypeDef PCBCells_Mode_Normal(PCBCells_TypeDef* pc){
 	}
 
 	// Send Data via CAN
-
+	if(PCBCells_CAN_SendFrames(pc) != HAL_OK){
+		return HAL_ERROR;
+	}
 
 	return HAL_OK;
 }
@@ -129,7 +135,7 @@ HAL_StatusTypeDef PCBCells_Peripherals_Start(PCBCells_TypeDef* pc){
 	}
 
 	// Launching Dual Mode Conversion
-	if(HAL_ADCEx_MultiModeStart_DMA(&pc->pcadc.hadc1, &pc->pcadc.badc1, ADC_MAX_CHANNELS) != HAL_OK){
+	if(HAL_ADCEx_MultiModeStart_DMA(&pc->pcadc.hadc1, (uint32_t*)pc->pcadc.badc1.ddma.BufferADC_Master, ADC_MAX_CHANNELS) != HAL_OK){
 		return HAL_ERROR;
 	}
 
@@ -206,7 +212,7 @@ HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusType
 
 void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
 
-	lastTick = HAL_GetTick();
+
 
 	if((HAL_GetTick() - lastTick -1) >= 500){
 
