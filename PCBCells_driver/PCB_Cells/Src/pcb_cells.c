@@ -24,6 +24,7 @@
 #include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
+
 extern uint32_t lastTick;
 
 /* Functions' bodies --------------------------------------------------------------------------  */
@@ -211,8 +212,6 @@ HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusType
 }
 
 void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
-
-
 
 	if((HAL_GetTick() - lastTick -1) >= 500){
 

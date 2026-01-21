@@ -53,16 +53,11 @@ HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 
 	for(int i = 0; i < 9; ++i){
 
-
-		// config frames ID
-
 		// configuration frames ID
 		if(PCBCells_CAN_GetID(pc, i, &msg.header.StdId) != HAL_OK){
 			return HAL_ERROR;
 		}
 
-
-		// configuration data for exact frame
 
 		if(PCBCells_CAN_ConfigData(pc, &msg, i) != HAL_OK){
 			return HAL_ERROR;
@@ -85,7 +80,9 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 	}
 
 	// Calculating Id for ascending or descending order of IDs assignment
-	*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + (pc->packetIndex % 2 != 0) ? framesAscendingBaseId : framesDescendingBaseId;
+	*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10
+	       + ((pc->packetIndex % 2 != 0) ? framesAscendingBaseId : framesDescendingBaseId);
+
 
 	// Checking if correct Id was assigned
 	if(*Id > (PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + 9) || *Id < (PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + 1)){
@@ -100,7 +97,6 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 	// locking reserved ID and changing values of indicators
 	framesAscendingBaseId++;
 	framesDescendingBaseId--;
-
 	return HAL_OK;
 }
 
