@@ -1,7 +1,0 @@
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:31:19:PCBCells_Init	32	static
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:87:19:PCBCells_Mode_Normal	16	static
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:116:19:PCBCells_Mode_Error	16	static
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:125:19:PCBCells_Peripherals_Start	16	static
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:151:19:PCBCells_Peripherals_Stop	16	static
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:176:19:PCBCells_ConfigPCBIndex	32	static
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:197:19:PCBCells_Mode_Change	16	static
