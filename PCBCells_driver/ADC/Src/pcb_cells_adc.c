@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    pcb_cells_adc.c
   * @author  Bartosz Rychlicki
-  * #author  AGH Eko-Energia
+  * @author  AGH Eko-Energia
 
   * @Title   Firmware for Cells' PCB's ADC peripheral
   *

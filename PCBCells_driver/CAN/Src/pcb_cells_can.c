@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    pcb_cells_can.c
   * @author  Bartosz Rychlicki
-  * #author  AGH Eko-Energia
+  * @author  AGH Eko-Energia
 
   * @Title   Firmware for Cells' PCB's CAN peripheral
   *
@@ -108,11 +108,8 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 
 HAL_StatusTypeDef PCBCells_CAN_ConfigData(PCBCells_TypeDef* pc, CAN_ScheduledMsg* msg, uint8_t thermId){
 
-	// checking ascending CAN frames' IDs organization
-	int isEven = pc->packetIndex % 2; // 0 - even, 1 - odd
-
 	// organizing proper assignment
-	msg->GetData = CAN2_Therm_Handlers[((isEven)? framesDescendingBaseId  : framesAscendingBaseId) - 1];
+	msg->GetData = CAN2_Therm_Handlers[thermId];
 
 
 	return HAL_OK;
@@ -129,7 +126,7 @@ HAL_StatusTypeDef PCBCells_CAN_SendFrames(PCBCells_TypeDef* pc){
 HAL_StatusTypeDef PCBCells_CAN_ScaleValue(PCBCells_TypeDef* pc, uint8_t thermIndex, float* realValue){
 
 	// checking if given thermistor index is correct
-	if(thermIndex > 9 || thermIndex < 1){
+	if(thermIndex >= 9){
 		return HAL_ERROR;
 	}
 
@@ -139,7 +136,7 @@ HAL_StatusTypeDef PCBCells_CAN_ScaleValue(PCBCells_TypeDef* pc, uint8_t thermInd
 	binaryType = (*realValue - PCBCELLS_CAN_THERM_OFFSET) / PCBCELLS_CAN_THERM_GAIN;
 
 	// assigning calculated binary type of temperature to correct index in array (stored in PCBCells_TypeDef), index of array is equal to thermIndex - 1
-	pc->pcadc.PCBCells_temperatures[thermIndex - 1] = binaryType;
+	pc->pcadc.PCBCells_temperatures[thermIndex] = binaryType;
 
 	return HAL_OK;
 }

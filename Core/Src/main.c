@@ -106,6 +106,9 @@ int main(void)
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  // reading current tick
+  lastTick = HAL_GetTick();
   while (1)
   {
 

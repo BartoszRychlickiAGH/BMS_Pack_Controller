@@ -212,7 +212,7 @@ HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusType
 
 void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
 
-	lastTick = HAL_GetTick();
+
 
 	if((HAL_GetTick() - lastTick -1) >= 500){
 
