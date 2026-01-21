@@ -1,7 +1,0 @@
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:31:19:PCBCells_Init	8
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:87:19:PCBCells_Mode_Normal	5
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:116:19:PCBCells_Mode_Error	1
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:125:19:PCBCells_Peripherals_Start	5
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:151:19:PCBCells_Peripherals_Stop	5
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:176:19:PCBCells_ConfigPCBIndex	5
-../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:197:19:PCBCells_Mode_Change	3

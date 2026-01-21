@@ -47,6 +47,7 @@
 
 /* USER CODE BEGIN PV */
 PCBCells_TypeDef  pcbCells;
+uint32_t lastTick; 			// tick variable for providing LEDs blinking
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -97,15 +98,23 @@ int main(void)
 
   // Initialization of PCB Cells object
   if(PCBCells_Init(&pcbCells, &hadc1, &hadc2, &hcan) != HAL_OK){
-	  return HAL_ERROR;
+	  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
+		  // handling error
+	  }
   }
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
+  // reading current tick
+  lastTick = HAL_GetTick();
   while (1)
   {
+	  // Blink diode in order co-related to current Cells' PCB's state
+	  PCBCells_Mode_Blink(&pcbCells);
+
 
 	  // State machine
 	  switch(pcbCells.currStatus){
@@ -115,7 +124,7 @@ int main(void)
 
 			  if(PCBCells_Mode_Normal(&pcbCells) != HAL_OK){
 				  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
-					  Error_Handler();
+					  // handling error
 				  }
 			  }
 
@@ -125,18 +134,16 @@ int main(void)
 		  case PCBCELLS_ERROR:
 
 			  if(PCBCells_Mode_Error(&pcbCells) != HAL_OK){
-				  Error_Handler();
+				  // handling error
 			  }
 
 			  break;
 		  default:
-			  Error_Handler();
 
+			  // handling error
 			  break;
 	  }
 
-	 // Blink diode in order co-related to current Cells' PCB's state
-	 PCBCells_Mode_Blink(&pcbCells);
 
     /* USER CODE END WHILE */
 
