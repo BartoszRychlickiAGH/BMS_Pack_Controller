@@ -15,3 +15,7 @@
 .tmp
 .bak
 .xlsx
+Debug/
+*.su
+*.map
+*.cyclo

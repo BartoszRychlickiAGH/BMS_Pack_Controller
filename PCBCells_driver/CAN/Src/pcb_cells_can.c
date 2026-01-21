@@ -2,7 +2,7 @@
   ******************************************************************************
   * @file    pcb_cells_can.c
   * @author  Bartosz Rychlicki
-  * #author  AGH Eko-Energia
+  * @author  AGH Eko-Energia
 
   * @Title   Firmware for Cells' PCB's CAN peripheral
   *
@@ -39,6 +39,7 @@ static uint8_t framesDescendingBaseId = 9;  // base unity number of id for desce
 
 extern PCBCells_TypeDef pcbCells;
 /* Functions' bodies --------------------------------------------------------------------------  */
+
 HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 
 	// Init object for CAn frame
@@ -57,7 +58,7 @@ HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 			return HAL_ERROR;
 		}
 
-		// configuration data for exact frame
+
 		if(PCBCells_CAN_ConfigData(pc, &msg, i) != HAL_OK){
 			return HAL_ERROR;
 		}
@@ -78,10 +79,8 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 		return HAL_ERROR;
 	}
 
-
 	// Calculating Id for ascending or descending order of IDs assignment
 	*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + (pc->packetIndex % 2 != 0) ? framesAscendingBaseId : framesDescendingBaseId;
-
 
 
 	// Checking if correct Id was assigned
@@ -115,6 +114,7 @@ HAL_StatusTypeDef PCBCells_CAN_SendFrames(PCBCells_TypeDef* pc){
 
 	return HAL_OK;
 }
+
 
 HAL_StatusTypeDef PCBCells_CAN_ScaleValue(PCBCells_TypeDef* pc, uint8_t thermIndex, float* realValue){
 

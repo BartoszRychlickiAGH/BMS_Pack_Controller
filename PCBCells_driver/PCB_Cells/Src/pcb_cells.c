@@ -24,7 +24,8 @@
 #include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
-static uint32_t lastTick; 		// static tick variable for providing LEDs blinking
+
+extern uint32_t lastTick;
 
 /* Functions' bodies --------------------------------------------------------------------------  */
 
@@ -37,7 +38,7 @@ HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, 
 
 	// Setting default status
 	pc->prevStatus = PCBCELLS_ACTIVE;
-	pc->currStatus = PCBCELLS_ACTIVE;;
+	pc->currStatus = PCBCELLS_ACTIVE;
 
 	// Reseting buffers
 	memset(pc->pcadc.PCBCells_temperatures, 0, sizeof(pc->pcadc.PCBCells_temperatures));
@@ -211,8 +212,6 @@ HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusType
 }
 
 void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
-
-	lastTick = HAL_GetTick();
 
 	if((HAL_GetTick() - lastTick -1) >= 500){
 
