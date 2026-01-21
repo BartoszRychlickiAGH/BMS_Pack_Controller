@@ -5,21 +5,21 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000188  08000000  08000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         00005d9c  08000188  08000188  00001188  2**2
+  1 .text         00005d80  08000188  08000188  00001188  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       0000037c  08005f24  08005f24  00006f24  2**2
+  2 .rodata       0000037c  08005f08  08005f08  00006f08  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  3 .ARM.extab    00000000  080062a0  080062a0  000080a0  2**0
+  3 .ARM.extab    00000000  08006284  08006284  000080a0  2**0
                   CONTENTS
-  4 .ARM          00000008  080062a0  080062a0  000072a0  2**2
+  4 .ARM          00000008  08006284  08006284  00007284  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  5 .preinit_array 00000000  080062a8  080062a8  000080a0  2**0
+  5 .preinit_array 00000000  0800628c  0800628c  000080a0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  080062a8  080062a8  000072a8  2**2
+  6 .init_array   00000004  0800628c  0800628c  0000728c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  080062ac  080062ac  000072ac  2**2
+  7 .fini_array   00000004  08006290  08006290  00007290  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         000000a0  20000000  080062b0  00008000  2**2
+  8 .data         000000a0  20000000  08006294  00008000  2**2
                   CONTENTS, ALLOC, LOAD, DATA
   9 .ccmram       00000000  10000000  10000000  000080a0  2**0
                   CONTENTS
@@ -29,25 +29,25 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  12 .ARM.attributes 00000030  00000000  00000000  000080a0  2**0
                   CONTENTS, READONLY
- 13 .debug_info   0000ea2f  00000000  00000000  000080d0  2**0
+ 13 .debug_info   0000ea20  00000000  00000000  000080d0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_abbrev 00002d7c  00000000  00000000  00016aff  2**0
+ 14 .debug_abbrev 00002d7c  00000000  00000000  00016af0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_aranges 00000a70  00000000  00000000  00019880  2**3
+ 15 .debug_aranges 00000a70  00000000  00000000  00019870  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_rnglists 000007b0  00000000  00000000  0001a2f0  2**0
+ 16 .debug_rnglists 000007b0  00000000  00000000  0001a2e0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_macro  0001c89f  00000000  00000000  0001aaa0  2**0
+ 17 .debug_macro  0001c89f  00000000  00000000  0001aa90  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_line   0001040c  00000000  00000000  0003733f  2**0
+ 18 .debug_line   000103ff  00000000  00000000  0003732f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_str    000a134b  00000000  00000000  0004774b  2**0
+ 19 .debug_str    000a1344  00000000  00000000  0004772e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .comment      00000043  00000000  00000000  000e8a96  2**0
+ 20 .comment      00000043  00000000  00000000  000e8a72  2**0
                   CONTENTS, READONLY
- 21 .debug_frame  00002834  00000000  00000000  000e8adc  2**2
+ 21 .debug_frame  00002834  00000000  00000000  000e8ab8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line_str 00000071  00000000  00000000  000eb310  2**0
+ 22 .debug_line_str 00000071  00000000  00000000  000eb2ec  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -66,7 +66,7 @@ Disassembly of section .text:
  800019e:	bd10      	pop	{r4, pc}
  80001a0:	200000a0 	.word	0x200000a0
  80001a4:	00000000 	.word	0x00000000
- 80001a8:	08005f0c 	.word	0x08005f0c
+ 80001a8:	08005ef0 	.word	0x08005ef0
 
 080001ac <frame_dummy>:
  80001ac:	b508      	push	{r3, lr}
@@ -78,7 +78,7 @@ Disassembly of section .text:
  80001ba:	bd08      	pop	{r3, pc}
  80001bc:	00000000 	.word	0x00000000
  80001c0:	200000a4 	.word	0x200000a4
- 80001c4:	08005f0c 	.word	0x08005f0c
+ 80001c4:	08005ef0 	.word	0x08005ef0
 
 080001c8 <__aeabi_uldivmod>:
  80001c8:	b953      	cbnz	r3, 80001e0 <__aeabi_uldivmod+0x18>
@@ -1479,14 +1479,14 @@ int main(void)
  8000b2e:	4a15      	ldr	r2, [pc, #84]	@ (8000b84 <main+0x78>)
  8000b30:	4915      	ldr	r1, [pc, #84]	@ (8000b88 <main+0x7c>)
  8000b32:	4816      	ldr	r0, [pc, #88]	@ (8000b8c <main+0x80>)
- 8000b34:	f005 f816 	bl	8005b64 <PCBCells_Init>
+ 8000b34:	f005 f808 	bl	8005b48 <PCBCells_Init>
  8000b38:	4603      	mov	r3, r0
  8000b3a:	2b00      	cmp	r3, #0
  8000b3c:	d003      	beq.n	8000b46 <main+0x3a>
 	  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
  8000b3e:	2101      	movs	r1, #1
  8000b40:	4812      	ldr	r0, [pc, #72]	@ (8000b8c <main+0x80>)
- 8000b42:	f005 f94b 	bl	8005ddc <PCBCells_Mode_Change>
+ 8000b42:	f005 f93d 	bl	8005dc0 <PCBCells_Mode_Change>
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
@@ -1494,7 +1494,7 @@ int main(void)
 	  // Blink diode in order co-related to current Cells' PCB's state
 	  PCBCells_Mode_Blink(&pcbCells);
  8000b46:	4811      	ldr	r0, [pc, #68]	@ (8000b8c <main+0x80>)
- 8000b48:	f005 f968 	bl	8005e1c <PCBCells_Mode_Blink>
+ 8000b48:	f005 f95a 	bl	8005e00 <PCBCells_Mode_Blink>
 
 
 	  // State machine
@@ -1514,19 +1514,19 @@ int main(void)
  8000b5a:	e00f      	b.n	8000b7c <main+0x70>
 			  if(PCBCells_Mode_Normal(&pcbCells) != HAL_OK){
  8000b5c:	480b      	ldr	r0, [pc, #44]	@ (8000b8c <main+0x80>)
- 8000b5e:	f005 f88d 	bl	8005c7c <PCBCells_Mode_Normal>
+ 8000b5e:	f005 f87f 	bl	8005c60 <PCBCells_Mode_Normal>
  8000b62:	4603      	mov	r3, r0
  8000b64:	2b00      	cmp	r3, #0
  8000b66:	d008      	beq.n	8000b7a <main+0x6e>
 				  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
  8000b68:	2101      	movs	r1, #1
  8000b6a:	4808      	ldr	r0, [pc, #32]	@ (8000b8c <main+0x80>)
- 8000b6c:	f005 f936 	bl	8005ddc <PCBCells_Mode_Change>
+ 8000b6c:	f005 f928 	bl	8005dc0 <PCBCells_Mode_Change>
 			  break;
  8000b70:	e003      	b.n	8000b7a <main+0x6e>
 			  if(PCBCells_Mode_Error(&pcbCells) != HAL_OK){
  8000b72:	4806      	ldr	r0, [pc, #24]	@ (8000b8c <main+0x80>)
- 8000b74:	f005 f8ac 	bl	8005cd0 <PCBCells_Mode_Error>
+ 8000b74:	f005 f89e 	bl	8005cb4 <PCBCells_Mode_Error>
 			  break;
  8000b78:	e000      	b.n	8000b7c <main+0x70>
 			  break;
@@ -1554,7 +1554,7 @@ void SystemClock_Config(void)
  8000b9a:	2228      	movs	r2, #40	@ 0x28
  8000b9c:	2100      	movs	r1, #0
  8000b9e:	4618      	mov	r0, r3
- 8000ba0:	f005 f97a 	bl	8005e98 <memset>
+ 8000ba0:	f005 f96c 	bl	8005e7c <memset>
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
  8000ba4:	f107 031c 	add.w	r3, r7, #28
  8000ba8:	2200      	movs	r2, #0
@@ -2077,7 +2077,7 @@ LoopFillZerobss:
 
 /* Call static constructors */
     bl __libc_init_array
- 8000d8a:	f005 f88d 	bl	8005ea8 <__libc_init_array>
+ 8000d8a:	f005 f87f 	bl	8005e8c <__libc_init_array>
 /* Call the application's entry point.*/
 	bl	main
  8000d8e:	f7ff febd 	bl	8000b0c <main>
@@ -2094,7 +2094,7 @@ LoopForever:
   ldr r1, =_edata
  8000d9c:	200000a0 	.word	0x200000a0
   ldr r2, =_sidata
- 8000da0:	080062b0 	.word	0x080062b0
+ 8000da0:	08006294 	.word	0x08006294
   ldr r2, =_sbss
  8000da4:	200000a0 	.word	0x200000a0
   ldr r4, =_ebss
@@ -4500,7 +4500,7 @@ HAL_StatusTypeDef HAL_ADCEx_MultiModeStart_DMA(ADC_HandleTypeDef* hadc, uint32_t
  8001a72:	2250      	movs	r2, #80	@ 0x50
  8001a74:	2100      	movs	r1, #0
  8001a76:	4618      	mov	r0, r3
- 8001a78:	f004 fa0e 	bl	8005e98 <memset>
+ 8001a78:	f004 fa00 	bl	8005e7c <memset>
   assert_param(IS_FUNCTIONAL_STATE(hadc->Init.ContinuousConvMode));
   assert_param(IS_ADC_EXTTRIG_EDGE(hadc->Init.ExternalTrigConvEdge));
   assert_param(IS_FUNCTIONAL_STATE(hadc->Init.DMAContinuousRequests));
@@ -11731,7 +11731,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  800490c:	bd80      	pop	{r7, pc}
  800490e:	bf00      	nop
  8004910:	40021000 	.word	0x40021000
- 8004914:	08005f24 	.word	0x08005f24
+ 8004914:	08005f08 	.word	0x08005f08
  8004918:	20000000 	.word	0x20000000
  800491c:	20000004 	.word	0x20000004
 
@@ -11854,8 +11854,8 @@ uint32_t HAL_RCC_GetSysClockFreq(void)
  80049b2:	bf00      	nop
  80049b4:	40021000 	.word	0x40021000
  80049b8:	007a1200 	.word	0x007a1200
- 80049bc:	08005f34 	.word	0x08005f34
- 80049c0:	08005f44 	.word	0x08005f44
+ 80049bc:	08005f18 	.word	0x08005f18
+ 80049c0:	08005f28 	.word	0x08005f28
  80049c4:	003d0900 	.word	0x003d0900
 
 080049c8 <HAL_RCCEx_PeriphCLKConfig>:
@@ -13603,7 +13603,7 @@ HAL_StatusTypeDef PCBCells_ADC1_ReadChannels(PCBCells_TypeDef* pc){
  8005422:	f107 0308 	add.w	r3, r7, #8
  8005426:	461a      	mov	r2, r3
  8005428:	6878      	ldr	r0, [r7, #4]
- 800542a:	f000 fa9f 	bl	800596c <PCBCells_CAN_ScaleValue>
+ 800542a:	f000 fa95 	bl	8005958 <PCBCells_CAN_ScaleValue>
  800542e:	4603      	mov	r3, r0
  8005430:	2b00      	cmp	r3, #0
  8005432:	d001      	beq.n	8005438 <PCBCells_ADC1_ReadChannels+0x4a>
@@ -13662,7 +13662,7 @@ HAL_StatusTypeDef PCBCells_ADC2_ReadChannels(PCBCells_TypeDef* pc){
  800547a:	e016      	b.n	80054aa <PCBCells_ADC2_ReadChannels+0x5c>
 		}
 
-		// scaling and assigning temperature to Cells's PCB's object's field | second param is shifting with offset cause,
+		// scaling and assigning temperature to Cells's PCB's object's field
 		if(PCBCells_CAN_ScaleValue(pc, (uint8_t)(i + ADC_THERM_OFFSET), &adc1Temperature_f) != HAL_OK){
  800547c:	68fb      	ldr	r3, [r7, #12]
  800547e:	b2db      	uxtb	r3, r3
@@ -13672,7 +13672,7 @@ HAL_StatusTypeDef PCBCells_ADC2_ReadChannels(PCBCells_TypeDef* pc){
  8005486:	f107 0308 	add.w	r3, r7, #8
  800548a:	461a      	mov	r2, r3
  800548c:	6878      	ldr	r0, [r7, #4]
- 800548e:	f000 fa6d 	bl	800596c <PCBCells_CAN_ScaleValue>
+ 800548e:	f000 fa63 	bl	8005958 <PCBCells_CAN_ScaleValue>
  8005492:	4603      	mov	r3, r0
  8005494:	2b00      	cmp	r3, #0
  8005496:	d001      	beq.n	800549c <PCBCells_ADC2_ReadChannels+0x4e>
@@ -13965,7 +13965,7 @@ float PCBCells_ADC_NTC_GetTemperature(float Rt){
 
 
 
-    // search for closes restistance
+    // search for closes resistance
     for (int i = 0; i < 100; ++i) {
  80056ba:	2300      	movs	r3, #0
  80056bc:	60fb      	str	r3, [r7, #12]
@@ -14056,8 +14056,8 @@ float PCBCells_ADC_NTC_GetTemperature(float Rt){
  8005778:	f85d 7b04 	ldr.w	r7, [sp], #4
  800577c:	4770      	bx	lr
  800577e:	bf00      	nop
- 8005780:	08005f54 	.word	0x08005f54
- 8005784:	080060e8 	.word	0x080060e8
+ 8005780:	08005f38 	.word	0x08005f38
+ 8005784:	080060cc 	.word	0x080060cc
 
 08005788 <PCBCells_CAN_InitFrames>:
 
@@ -14303,996 +14303,981 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 
 HAL_StatusTypeDef PCBCells_CAN_ConfigData(PCBCells_TypeDef* pc, CAN_ScheduledMsg* msg, uint8_t thermId){
  8005904:	b480      	push	{r7}
- 8005906:	b087      	sub	sp, #28
+ 8005906:	b085      	sub	sp, #20
  8005908:	af00      	add	r7, sp, #0
  800590a:	60f8      	str	r0, [r7, #12]
  800590c:	60b9      	str	r1, [r7, #8]
  800590e:	4613      	mov	r3, r2
  8005910:	71fb      	strb	r3, [r7, #7]
 
-	// checking ascending CAN frames' IDs organization
-	int isEven = pc->packetIndex % 2; // 0 - even, 1 - odd
- 8005912:	68fb      	ldr	r3, [r7, #12]
- 8005914:	f893 36c2 	ldrb.w	r3, [r3, #1730]	@ 0x6c2
- 8005918:	f3c3 0302 	ubfx	r3, r3, #0, #3
- 800591c:	b2db      	uxtb	r3, r3
- 800591e:	f003 0301 	and.w	r3, r3, #1
- 8005922:	617b      	str	r3, [r7, #20]
-
-
 	// organizing proper assignment
 	msg->GetData = CAN2_Therm_Handlers[thermId];
- 8005924:	79fb      	ldrb	r3, [r7, #7]
- 8005926:	4a06      	ldr	r2, [pc, #24]	@ (8005940 <PCBCells_CAN_ConfigData+0x3c>)
- 8005928:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
- 800592c:	68bb      	ldr	r3, [r7, #8]
- 800592e:	621a      	str	r2, [r3, #32]
+ 8005912:	79fb      	ldrb	r3, [r7, #7]
+ 8005914:	4a05      	ldr	r2, [pc, #20]	@ (800592c <PCBCells_CAN_ConfigData+0x28>)
+ 8005916:	f852 2023 	ldr.w	r2, [r2, r3, lsl #2]
+ 800591a:	68bb      	ldr	r3, [r7, #8]
+ 800591c:	621a      	str	r2, [r3, #32]
 
 	return HAL_OK;
- 8005930:	2300      	movs	r3, #0
+ 800591e:	2300      	movs	r3, #0
 }
- 8005932:	4618      	mov	r0, r3
- 8005934:	371c      	adds	r7, #28
- 8005936:	46bd      	mov	sp, r7
- 8005938:	f85d 7b04 	ldr.w	r7, [sp], #4
- 800593c:	4770      	bx	lr
- 800593e:	bf00      	nop
- 8005940:	0800627c 	.word	0x0800627c
+ 8005920:	4618      	mov	r0, r3
+ 8005922:	3714      	adds	r7, #20
+ 8005924:	46bd      	mov	sp, r7
+ 8005926:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800592a:	4770      	bx	lr
+ 800592c:	08006260 	.word	0x08006260
 
-08005944 <PCBCells_CAN_SendFrames>:
+08005930 <PCBCells_CAN_SendFrames>:
 
 HAL_StatusTypeDef PCBCells_CAN_SendFrames(PCBCells_TypeDef* pc){
- 8005944:	b580      	push	{r7, lr}
- 8005946:	b082      	sub	sp, #8
- 8005948:	af00      	add	r7, sp, #0
- 800594a:	6078      	str	r0, [r7, #4]
+ 8005930:	b580      	push	{r7, lr}
+ 8005932:	b082      	sub	sp, #8
+ 8005934:	af00      	add	r7, sp, #0
+ 8005936:	6078      	str	r0, [r7, #4]
 
 	// Send scheduled messages on CAN bus
 	CAN_HandleScheduled(&pc->pccan.hcan, &pc->pccan.CAN_msgBuffer);
- 800594c:	687b      	ldr	r3, [r7, #4]
- 800594e:	f503 7204 	add.w	r2, r3, #528	@ 0x210
- 8005952:	687b      	ldr	r3, [r7, #4]
- 8005954:	f503 730e 	add.w	r3, r3, #568	@ 0x238
- 8005958:	4619      	mov	r1, r3
- 800595a:	4610      	mov	r0, r2
- 800595c:	f7ff fcc7 	bl	80052ee <CAN_HandleScheduled>
+ 8005938:	687b      	ldr	r3, [r7, #4]
+ 800593a:	f503 7204 	add.w	r2, r3, #528	@ 0x210
+ 800593e:	687b      	ldr	r3, [r7, #4]
+ 8005940:	f503 730e 	add.w	r3, r3, #568	@ 0x238
+ 8005944:	4619      	mov	r1, r3
+ 8005946:	4610      	mov	r0, r2
+ 8005948:	f7ff fcd1 	bl	80052ee <CAN_HandleScheduled>
 
 	return HAL_OK;
- 8005960:	2300      	movs	r3, #0
+ 800594c:	2300      	movs	r3, #0
 }
- 8005962:	4618      	mov	r0, r3
- 8005964:	3708      	adds	r7, #8
- 8005966:	46bd      	mov	sp, r7
- 8005968:	bd80      	pop	{r7, pc}
+ 800594e:	4618      	mov	r0, r3
+ 8005950:	3708      	adds	r7, #8
+ 8005952:	46bd      	mov	sp, r7
+ 8005954:	bd80      	pop	{r7, pc}
 	...
 
-0800596c <PCBCells_CAN_ScaleValue>:
+08005958 <PCBCells_CAN_ScaleValue>:
 
 HAL_StatusTypeDef PCBCells_CAN_ScaleValue(PCBCells_TypeDef* pc, uint8_t thermIndex, float* realValue){
- 800596c:	b480      	push	{r7}
- 800596e:	b087      	sub	sp, #28
- 8005970:	af00      	add	r7, sp, #0
- 8005972:	60f8      	str	r0, [r7, #12]
- 8005974:	460b      	mov	r3, r1
- 8005976:	607a      	str	r2, [r7, #4]
- 8005978:	72fb      	strb	r3, [r7, #11]
+ 8005958:	b480      	push	{r7}
+ 800595a:	b087      	sub	sp, #28
+ 800595c:	af00      	add	r7, sp, #0
+ 800595e:	60f8      	str	r0, [r7, #12]
+ 8005960:	460b      	mov	r3, r1
+ 8005962:	607a      	str	r2, [r7, #4]
+ 8005964:	72fb      	strb	r3, [r7, #11]
 
 	// checking if given thermistor index is correct
-	if(thermIndex > 9 || thermIndex < 1){
- 800597a:	7afb      	ldrb	r3, [r7, #11]
- 800597c:	2b09      	cmp	r3, #9
- 800597e:	d802      	bhi.n	8005986 <PCBCells_CAN_ScaleValue+0x1a>
- 8005980:	7afb      	ldrb	r3, [r7, #11]
- 8005982:	2b00      	cmp	r3, #0
- 8005984:	d101      	bne.n	800598a <PCBCells_CAN_ScaleValue+0x1e>
+	if(thermIndex >= 9){
+ 8005966:	7afb      	ldrb	r3, [r7, #11]
+ 8005968:	2b08      	cmp	r3, #8
+ 800596a:	d901      	bls.n	8005970 <PCBCells_CAN_ScaleValue+0x18>
 		return HAL_ERROR;
- 8005986:	2301      	movs	r3, #1
- 8005988:	e01a      	b.n	80059c0 <PCBCells_CAN_ScaleValue+0x54>
+ 800596c:	2301      	movs	r3, #1
+ 800596e:	e019      	b.n	80059a4 <PCBCells_CAN_ScaleValue+0x4c>
 	}
 
 	uint8_t binaryType = 0; 	// Init of variable that will store calculated binary type of temperature, its type will be correct to those which should be sent via CAN
- 800598a:	2300      	movs	r3, #0
- 800598c:	75fb      	strb	r3, [r7, #23]
+ 8005970:	2300      	movs	r3, #0
+ 8005972:	75fb      	strb	r3, [r7, #23]
 
 	// Calculating binary type of temperature | refers to: binaryType = (realValue - offset)/ gain;
 	binaryType = (*realValue - PCBCELLS_CAN_THERM_OFFSET) / PCBCELLS_CAN_THERM_GAIN;
- 800598e:	687b      	ldr	r3, [r7, #4]
- 8005990:	edd3 7a00 	vldr	s15, [r3]
- 8005994:	ed9f 7a0d 	vldr	s14, [pc, #52]	@ 80059cc <PCBCells_CAN_ScaleValue+0x60>
- 8005998:	ee37 7ac7 	vsub.f32	s14, s15, s14
- 800599c:	eddf 6a0c 	vldr	s13, [pc, #48]	@ 80059d0 <PCBCells_CAN_ScaleValue+0x64>
- 80059a0:	eec7 7a26 	vdiv.f32	s15, s14, s13
- 80059a4:	eefc 7ae7 	vcvt.u32.f32	s15, s15
- 80059a8:	edc7 7a00 	vstr	s15, [r7]
- 80059ac:	783b      	ldrb	r3, [r7, #0]
- 80059ae:	75fb      	strb	r3, [r7, #23]
+ 8005974:	687b      	ldr	r3, [r7, #4]
+ 8005976:	edd3 7a00 	vldr	s15, [r3]
+ 800597a:	ed9f 7a0d 	vldr	s14, [pc, #52]	@ 80059b0 <PCBCells_CAN_ScaleValue+0x58>
+ 800597e:	ee37 7ac7 	vsub.f32	s14, s15, s14
+ 8005982:	eddf 6a0c 	vldr	s13, [pc, #48]	@ 80059b4 <PCBCells_CAN_ScaleValue+0x5c>
+ 8005986:	eec7 7a26 	vdiv.f32	s15, s14, s13
+ 800598a:	eefc 7ae7 	vcvt.u32.f32	s15, s15
+ 800598e:	edc7 7a00 	vstr	s15, [r7]
+ 8005992:	783b      	ldrb	r3, [r7, #0]
+ 8005994:	75fb      	strb	r3, [r7, #23]
 
 	// assigning calculated binary type of temperature to correct index in array (stored in PCBCells_TypeDef), index of array is equal to thermIndex - 1
-	pc->pcadc.PCBCells_temperatures[thermIndex - 1] = binaryType;
- 80059b0:	7afb      	ldrb	r3, [r7, #11]
- 80059b2:	3b01      	subs	r3, #1
- 80059b4:	68fa      	ldr	r2, [r7, #12]
- 80059b6:	4413      	add	r3, r2
- 80059b8:	7dfa      	ldrb	r2, [r7, #23]
- 80059ba:	f883 2204 	strb.w	r2, [r3, #516]	@ 0x204
+	pc->pcadc.PCBCells_temperatures[thermIndex] = binaryType;
+ 8005996:	7afb      	ldrb	r3, [r7, #11]
+ 8005998:	68fa      	ldr	r2, [r7, #12]
+ 800599a:	4413      	add	r3, r2
+ 800599c:	7dfa      	ldrb	r2, [r7, #23]
+ 800599e:	f883 2204 	strb.w	r2, [r3, #516]	@ 0x204
 
 	return HAL_OK;
- 80059be:	2300      	movs	r3, #0
+ 80059a2:	2300      	movs	r3, #0
 }
- 80059c0:	4618      	mov	r0, r3
- 80059c2:	371c      	adds	r7, #28
- 80059c4:	46bd      	mov	sp, r7
- 80059c6:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80059ca:	4770      	bx	lr
- 80059cc:	42473732 	.word	0x42473732
- 80059d0:	3ec8c932 	.word	0x3ec8c932
+ 80059a4:	4618      	mov	r0, r3
+ 80059a6:	371c      	adds	r7, #28
+ 80059a8:	46bd      	mov	sp, r7
+ 80059aa:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80059ae:	4770      	bx	lr
+ 80059b0:	42473732 	.word	0x42473732
+ 80059b4:	3ec8c932 	.word	0x3ec8c932
 
-080059d4 <PCBCells_CAN_PackCAN2Temps>:
+080059b8 <PCBCells_CAN_PackCAN2Temps>:
 
 void PCBCells_CAN_PackCAN2Temps(uint8_t* data, uint8_t thermId){
- 80059d4:	b480      	push	{r7}
- 80059d6:	b083      	sub	sp, #12
- 80059d8:	af00      	add	r7, sp, #0
- 80059da:	6078      	str	r0, [r7, #4]
- 80059dc:	460b      	mov	r3, r1
- 80059de:	70fb      	strb	r3, [r7, #3]
+ 80059b8:	b480      	push	{r7}
+ 80059ba:	b083      	sub	sp, #12
+ 80059bc:	af00      	add	r7, sp, #0
+ 80059be:	6078      	str	r0, [r7, #4]
+ 80059c0:	460b      	mov	r3, r1
+ 80059c2:	70fb      	strb	r3, [r7, #3]
 
 	// assigning data for CAN frame from PCBCells object's array's element
 	switch (thermId) {
- 80059e0:	78fb      	ldrb	r3, [r7, #3]
- 80059e2:	2b08      	cmp	r3, #8
- 80059e4:	d84a      	bhi.n	8005a7c <PCBCells_CAN_PackCAN2Temps+0xa8>
- 80059e6:	a201      	add	r2, pc, #4	@ (adr r2, 80059ec <PCBCells_CAN_PackCAN2Temps+0x18>)
- 80059e8:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 80059ec:	08005a11 	.word	0x08005a11
- 80059f0:	08005a1d 	.word	0x08005a1d
- 80059f4:	08005a29 	.word	0x08005a29
- 80059f8:	08005a35 	.word	0x08005a35
- 80059fc:	08005a41 	.word	0x08005a41
- 8005a00:	08005a4d 	.word	0x08005a4d
- 8005a04:	08005a59 	.word	0x08005a59
- 8005a08:	08005a65 	.word	0x08005a65
- 8005a0c:	08005a71 	.word	0x08005a71
+ 80059c4:	78fb      	ldrb	r3, [r7, #3]
+ 80059c6:	2b08      	cmp	r3, #8
+ 80059c8:	d84a      	bhi.n	8005a60 <PCBCells_CAN_PackCAN2Temps+0xa8>
+ 80059ca:	a201      	add	r2, pc, #4	@ (adr r2, 80059d0 <PCBCells_CAN_PackCAN2Temps+0x18>)
+ 80059cc:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 80059d0:	080059f5 	.word	0x080059f5
+ 80059d4:	08005a01 	.word	0x08005a01
+ 80059d8:	08005a0d 	.word	0x08005a0d
+ 80059dc:	08005a19 	.word	0x08005a19
+ 80059e0:	08005a25 	.word	0x08005a25
+ 80059e4:	08005a31 	.word	0x08005a31
+ 80059e8:	08005a3d 	.word	0x08005a3d
+ 80059ec:	08005a49 	.word	0x08005a49
+ 80059f0:	08005a55 	.word	0x08005a55
 	    case 0:		// first therm
 	        *data = pcbCells.pcadc.PCBCells_temperatures[0];
- 8005a10:	4b1d      	ldr	r3, [pc, #116]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a12:	f893 2204 	ldrb.w	r2, [r3, #516]	@ 0x204
- 8005a16:	687b      	ldr	r3, [r7, #4]
- 8005a18:	701a      	strb	r2, [r3, #0]
+ 80059f4:	4b1d      	ldr	r3, [pc, #116]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 80059f6:	f893 2204 	ldrb.w	r2, [r3, #516]	@ 0x204
+ 80059fa:	687b      	ldr	r3, [r7, #4]
+ 80059fc:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a1a:	e030      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 80059fe:	e030      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 1:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[1];
- 8005a1c:	4b1a      	ldr	r3, [pc, #104]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a1e:	f893 2205 	ldrb.w	r2, [r3, #517]	@ 0x205
- 8005a22:	687b      	ldr	r3, [r7, #4]
- 8005a24:	701a      	strb	r2, [r3, #0]
+ 8005a00:	4b1a      	ldr	r3, [pc, #104]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a02:	f893 2205 	ldrb.w	r2, [r3, #517]	@ 0x205
+ 8005a06:	687b      	ldr	r3, [r7, #4]
+ 8005a08:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a26:	e02a      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a0a:	e02a      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 2:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[2];
- 8005a28:	4b17      	ldr	r3, [pc, #92]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a2a:	f893 2206 	ldrb.w	r2, [r3, #518]	@ 0x206
- 8005a2e:	687b      	ldr	r3, [r7, #4]
- 8005a30:	701a      	strb	r2, [r3, #0]
+ 8005a0c:	4b17      	ldr	r3, [pc, #92]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a0e:	f893 2206 	ldrb.w	r2, [r3, #518]	@ 0x206
+ 8005a12:	687b      	ldr	r3, [r7, #4]
+ 8005a14:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a32:	e024      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a16:	e024      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 3:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[3];
- 8005a34:	4b14      	ldr	r3, [pc, #80]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a36:	f893 2207 	ldrb.w	r2, [r3, #519]	@ 0x207
- 8005a3a:	687b      	ldr	r3, [r7, #4]
- 8005a3c:	701a      	strb	r2, [r3, #0]
+ 8005a18:	4b14      	ldr	r3, [pc, #80]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a1a:	f893 2207 	ldrb.w	r2, [r3, #519]	@ 0x207
+ 8005a1e:	687b      	ldr	r3, [r7, #4]
+ 8005a20:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a3e:	e01e      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a22:	e01e      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 4:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[5];
- 8005a40:	4b11      	ldr	r3, [pc, #68]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a42:	f893 2209 	ldrb.w	r2, [r3, #521]	@ 0x209
- 8005a46:	687b      	ldr	r3, [r7, #4]
- 8005a48:	701a      	strb	r2, [r3, #0]
+ 8005a24:	4b11      	ldr	r3, [pc, #68]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a26:	f893 2209 	ldrb.w	r2, [r3, #521]	@ 0x209
+ 8005a2a:	687b      	ldr	r3, [r7, #4]
+ 8005a2c:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a4a:	e018      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a2e:	e018      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 5:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[6];
- 8005a4c:	4b0e      	ldr	r3, [pc, #56]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a4e:	f893 220a 	ldrb.w	r2, [r3, #522]	@ 0x20a
- 8005a52:	687b      	ldr	r3, [r7, #4]
- 8005a54:	701a      	strb	r2, [r3, #0]
+ 8005a30:	4b0e      	ldr	r3, [pc, #56]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a32:	f893 220a 	ldrb.w	r2, [r3, #522]	@ 0x20a
+ 8005a36:	687b      	ldr	r3, [r7, #4]
+ 8005a38:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a56:	e012      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a3a:	e012      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 6:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[7];
- 8005a58:	4b0b      	ldr	r3, [pc, #44]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a5a:	f893 220b 	ldrb.w	r2, [r3, #523]	@ 0x20b
- 8005a5e:	687b      	ldr	r3, [r7, #4]
- 8005a60:	701a      	strb	r2, [r3, #0]
+ 8005a3c:	4b0b      	ldr	r3, [pc, #44]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a3e:	f893 220b 	ldrb.w	r2, [r3, #523]	@ 0x20b
+ 8005a42:	687b      	ldr	r3, [r7, #4]
+ 8005a44:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a62:	e00c      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a46:	e00c      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 7:
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[8];
- 8005a64:	4b08      	ldr	r3, [pc, #32]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a66:	f893 220c 	ldrb.w	r2, [r3, #524]	@ 0x20c
- 8005a6a:	687b      	ldr	r3, [r7, #4]
- 8005a6c:	701a      	strb	r2, [r3, #0]
+ 8005a48:	4b08      	ldr	r3, [pc, #32]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a4a:	f893 220c 	ldrb.w	r2, [r3, #524]	@ 0x20c
+ 8005a4e:	687b      	ldr	r3, [r7, #4]
+ 8005a50:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a6e:	e006      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a52:	e006      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    case 8:		// ninth therm
 	    	*data = pcbCells.pcadc.PCBCells_temperatures[4];
- 8005a70:	4b05      	ldr	r3, [pc, #20]	@ (8005a88 <PCBCells_CAN_PackCAN2Temps+0xb4>)
- 8005a72:	f893 2208 	ldrb.w	r2, [r3, #520]	@ 0x208
- 8005a76:	687b      	ldr	r3, [r7, #4]
- 8005a78:	701a      	strb	r2, [r3, #0]
+ 8005a54:	4b05      	ldr	r3, [pc, #20]	@ (8005a6c <PCBCells_CAN_PackCAN2Temps+0xb4>)
+ 8005a56:	f893 2208 	ldrb.w	r2, [r3, #520]	@ 0x208
+ 8005a5a:	687b      	ldr	r3, [r7, #4]
+ 8005a5c:	701a      	strb	r2, [r3, #0]
 	        break;
- 8005a7a:	e000      	b.n	8005a7e <PCBCells_CAN_PackCAN2Temps+0xaa>
+ 8005a5e:	e000      	b.n	8005a62 <PCBCells_CAN_PackCAN2Temps+0xaa>
 	    default:
 
 	    	// return error status
 	        return;
- 8005a7c:	bf00      	nop
+ 8005a60:	bf00      	nop
 	}
 }
- 8005a7e:	370c      	adds	r7, #12
- 8005a80:	46bd      	mov	sp, r7
- 8005a82:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8005a86:	4770      	bx	lr
- 8005a88:	20000210 	.word	0x20000210
+ 8005a62:	370c      	adds	r7, #12
+ 8005a64:	46bd      	mov	sp, r7
+ 8005a66:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8005a6a:	4770      	bx	lr
+ 8005a6c:	20000210 	.word	0x20000210
 
-08005a8c <PCBCells_CAN_Get_CAN2_Data_Therm1>:
+08005a70 <PCBCells_CAN_Get_CAN2_Data_Therm1>:
 
 
 void PCBCells_CAN_Get_CAN2_Data_Therm1(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 0);}
- 8005a8c:	b580      	push	{r7, lr}
- 8005a8e:	b082      	sub	sp, #8
- 8005a90:	af00      	add	r7, sp, #0
- 8005a92:	6078      	str	r0, [r7, #4]
- 8005a94:	2100      	movs	r1, #0
- 8005a96:	6878      	ldr	r0, [r7, #4]
- 8005a98:	f7ff ff9c 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005a9c:	bf00      	nop
- 8005a9e:	3708      	adds	r7, #8
- 8005aa0:	46bd      	mov	sp, r7
- 8005aa2:	bd80      	pop	{r7, pc}
+ 8005a70:	b580      	push	{r7, lr}
+ 8005a72:	b082      	sub	sp, #8
+ 8005a74:	af00      	add	r7, sp, #0
+ 8005a76:	6078      	str	r0, [r7, #4]
+ 8005a78:	2100      	movs	r1, #0
+ 8005a7a:	6878      	ldr	r0, [r7, #4]
+ 8005a7c:	f7ff ff9c 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005a80:	bf00      	nop
+ 8005a82:	3708      	adds	r7, #8
+ 8005a84:	46bd      	mov	sp, r7
+ 8005a86:	bd80      	pop	{r7, pc}
 
-08005aa4 <PCBCells_CAN_Get_CAN2_Data_Therm2>:
+08005a88 <PCBCells_CAN_Get_CAN2_Data_Therm2>:
 void PCBCells_CAN_Get_CAN2_Data_Therm2(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 1);}
- 8005aa4:	b580      	push	{r7, lr}
- 8005aa6:	b082      	sub	sp, #8
- 8005aa8:	af00      	add	r7, sp, #0
- 8005aaa:	6078      	str	r0, [r7, #4]
- 8005aac:	2101      	movs	r1, #1
- 8005aae:	6878      	ldr	r0, [r7, #4]
- 8005ab0:	f7ff ff90 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005ab4:	bf00      	nop
- 8005ab6:	3708      	adds	r7, #8
- 8005ab8:	46bd      	mov	sp, r7
- 8005aba:	bd80      	pop	{r7, pc}
+ 8005a88:	b580      	push	{r7, lr}
+ 8005a8a:	b082      	sub	sp, #8
+ 8005a8c:	af00      	add	r7, sp, #0
+ 8005a8e:	6078      	str	r0, [r7, #4]
+ 8005a90:	2101      	movs	r1, #1
+ 8005a92:	6878      	ldr	r0, [r7, #4]
+ 8005a94:	f7ff ff90 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005a98:	bf00      	nop
+ 8005a9a:	3708      	adds	r7, #8
+ 8005a9c:	46bd      	mov	sp, r7
+ 8005a9e:	bd80      	pop	{r7, pc}
 
-08005abc <PCBCells_CAN_Get_CAN2_Data_Therm3>:
+08005aa0 <PCBCells_CAN_Get_CAN2_Data_Therm3>:
 void PCBCells_CAN_Get_CAN2_Data_Therm3(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 2);}
- 8005abc:	b580      	push	{r7, lr}
- 8005abe:	b082      	sub	sp, #8
- 8005ac0:	af00      	add	r7, sp, #0
- 8005ac2:	6078      	str	r0, [r7, #4]
- 8005ac4:	2102      	movs	r1, #2
- 8005ac6:	6878      	ldr	r0, [r7, #4]
- 8005ac8:	f7ff ff84 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005acc:	bf00      	nop
- 8005ace:	3708      	adds	r7, #8
- 8005ad0:	46bd      	mov	sp, r7
- 8005ad2:	bd80      	pop	{r7, pc}
+ 8005aa0:	b580      	push	{r7, lr}
+ 8005aa2:	b082      	sub	sp, #8
+ 8005aa4:	af00      	add	r7, sp, #0
+ 8005aa6:	6078      	str	r0, [r7, #4]
+ 8005aa8:	2102      	movs	r1, #2
+ 8005aaa:	6878      	ldr	r0, [r7, #4]
+ 8005aac:	f7ff ff84 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005ab0:	bf00      	nop
+ 8005ab2:	3708      	adds	r7, #8
+ 8005ab4:	46bd      	mov	sp, r7
+ 8005ab6:	bd80      	pop	{r7, pc}
 
-08005ad4 <PCBCells_CAN_Get_CAN2_Data_Therm4>:
+08005ab8 <PCBCells_CAN_Get_CAN2_Data_Therm4>:
 void PCBCells_CAN_Get_CAN2_Data_Therm4(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 3);}
- 8005ad4:	b580      	push	{r7, lr}
- 8005ad6:	b082      	sub	sp, #8
- 8005ad8:	af00      	add	r7, sp, #0
- 8005ada:	6078      	str	r0, [r7, #4]
- 8005adc:	2103      	movs	r1, #3
- 8005ade:	6878      	ldr	r0, [r7, #4]
- 8005ae0:	f7ff ff78 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005ae4:	bf00      	nop
- 8005ae6:	3708      	adds	r7, #8
- 8005ae8:	46bd      	mov	sp, r7
- 8005aea:	bd80      	pop	{r7, pc}
+ 8005ab8:	b580      	push	{r7, lr}
+ 8005aba:	b082      	sub	sp, #8
+ 8005abc:	af00      	add	r7, sp, #0
+ 8005abe:	6078      	str	r0, [r7, #4]
+ 8005ac0:	2103      	movs	r1, #3
+ 8005ac2:	6878      	ldr	r0, [r7, #4]
+ 8005ac4:	f7ff ff78 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005ac8:	bf00      	nop
+ 8005aca:	3708      	adds	r7, #8
+ 8005acc:	46bd      	mov	sp, r7
+ 8005ace:	bd80      	pop	{r7, pc}
 
-08005aec <PCBCells_CAN_Get_CAN2_Data_Therm5>:
+08005ad0 <PCBCells_CAN_Get_CAN2_Data_Therm5>:
 void PCBCells_CAN_Get_CAN2_Data_Therm5(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 4);}
- 8005aec:	b580      	push	{r7, lr}
- 8005aee:	b082      	sub	sp, #8
- 8005af0:	af00      	add	r7, sp, #0
- 8005af2:	6078      	str	r0, [r7, #4]
- 8005af4:	2104      	movs	r1, #4
- 8005af6:	6878      	ldr	r0, [r7, #4]
- 8005af8:	f7ff ff6c 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005afc:	bf00      	nop
- 8005afe:	3708      	adds	r7, #8
- 8005b00:	46bd      	mov	sp, r7
- 8005b02:	bd80      	pop	{r7, pc}
+ 8005ad0:	b580      	push	{r7, lr}
+ 8005ad2:	b082      	sub	sp, #8
+ 8005ad4:	af00      	add	r7, sp, #0
+ 8005ad6:	6078      	str	r0, [r7, #4]
+ 8005ad8:	2104      	movs	r1, #4
+ 8005ada:	6878      	ldr	r0, [r7, #4]
+ 8005adc:	f7ff ff6c 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005ae0:	bf00      	nop
+ 8005ae2:	3708      	adds	r7, #8
+ 8005ae4:	46bd      	mov	sp, r7
+ 8005ae6:	bd80      	pop	{r7, pc}
 
-08005b04 <PCBCells_CAN_Get_CAN2_Data_Therm6>:
+08005ae8 <PCBCells_CAN_Get_CAN2_Data_Therm6>:
 void PCBCells_CAN_Get_CAN2_Data_Therm6(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 5);}
- 8005b04:	b580      	push	{r7, lr}
- 8005b06:	b082      	sub	sp, #8
- 8005b08:	af00      	add	r7, sp, #0
- 8005b0a:	6078      	str	r0, [r7, #4]
- 8005b0c:	2105      	movs	r1, #5
- 8005b0e:	6878      	ldr	r0, [r7, #4]
- 8005b10:	f7ff ff60 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005b14:	bf00      	nop
- 8005b16:	3708      	adds	r7, #8
- 8005b18:	46bd      	mov	sp, r7
- 8005b1a:	bd80      	pop	{r7, pc}
+ 8005ae8:	b580      	push	{r7, lr}
+ 8005aea:	b082      	sub	sp, #8
+ 8005aec:	af00      	add	r7, sp, #0
+ 8005aee:	6078      	str	r0, [r7, #4]
+ 8005af0:	2105      	movs	r1, #5
+ 8005af2:	6878      	ldr	r0, [r7, #4]
+ 8005af4:	f7ff ff60 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005af8:	bf00      	nop
+ 8005afa:	3708      	adds	r7, #8
+ 8005afc:	46bd      	mov	sp, r7
+ 8005afe:	bd80      	pop	{r7, pc}
 
-08005b1c <PCBCells_CAN_Get_CAN2_Data_Therm7>:
+08005b00 <PCBCells_CAN_Get_CAN2_Data_Therm7>:
 void PCBCells_CAN_Get_CAN2_Data_Therm7(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 6);}
- 8005b1c:	b580      	push	{r7, lr}
- 8005b1e:	b082      	sub	sp, #8
- 8005b20:	af00      	add	r7, sp, #0
- 8005b22:	6078      	str	r0, [r7, #4]
- 8005b24:	2106      	movs	r1, #6
- 8005b26:	6878      	ldr	r0, [r7, #4]
- 8005b28:	f7ff ff54 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005b2c:	bf00      	nop
- 8005b2e:	3708      	adds	r7, #8
- 8005b30:	46bd      	mov	sp, r7
- 8005b32:	bd80      	pop	{r7, pc}
+ 8005b00:	b580      	push	{r7, lr}
+ 8005b02:	b082      	sub	sp, #8
+ 8005b04:	af00      	add	r7, sp, #0
+ 8005b06:	6078      	str	r0, [r7, #4]
+ 8005b08:	2106      	movs	r1, #6
+ 8005b0a:	6878      	ldr	r0, [r7, #4]
+ 8005b0c:	f7ff ff54 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005b10:	bf00      	nop
+ 8005b12:	3708      	adds	r7, #8
+ 8005b14:	46bd      	mov	sp, r7
+ 8005b16:	bd80      	pop	{r7, pc}
 
-08005b34 <PCBCells_CAN_Get_CAN2_Data_Therm8>:
+08005b18 <PCBCells_CAN_Get_CAN2_Data_Therm8>:
 void PCBCells_CAN_Get_CAN2_Data_Therm8(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 7);}
- 8005b34:	b580      	push	{r7, lr}
- 8005b36:	b082      	sub	sp, #8
- 8005b38:	af00      	add	r7, sp, #0
- 8005b3a:	6078      	str	r0, [r7, #4]
- 8005b3c:	2107      	movs	r1, #7
- 8005b3e:	6878      	ldr	r0, [r7, #4]
- 8005b40:	f7ff ff48 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005b44:	bf00      	nop
- 8005b46:	3708      	adds	r7, #8
- 8005b48:	46bd      	mov	sp, r7
- 8005b4a:	bd80      	pop	{r7, pc}
+ 8005b18:	b580      	push	{r7, lr}
+ 8005b1a:	b082      	sub	sp, #8
+ 8005b1c:	af00      	add	r7, sp, #0
+ 8005b1e:	6078      	str	r0, [r7, #4]
+ 8005b20:	2107      	movs	r1, #7
+ 8005b22:	6878      	ldr	r0, [r7, #4]
+ 8005b24:	f7ff ff48 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005b28:	bf00      	nop
+ 8005b2a:	3708      	adds	r7, #8
+ 8005b2c:	46bd      	mov	sp, r7
+ 8005b2e:	bd80      	pop	{r7, pc}
 
-08005b4c <PCBCells_CAN_Get_CAN2_Data_Therm9>:
+08005b30 <PCBCells_CAN_Get_CAN2_Data_Therm9>:
 void PCBCells_CAN_Get_CAN2_Data_Therm9(uint8_t *data){ PCBCells_CAN_PackCAN2Temps(data, 8);}
- 8005b4c:	b580      	push	{r7, lr}
- 8005b4e:	b082      	sub	sp, #8
- 8005b50:	af00      	add	r7, sp, #0
- 8005b52:	6078      	str	r0, [r7, #4]
- 8005b54:	2108      	movs	r1, #8
- 8005b56:	6878      	ldr	r0, [r7, #4]
- 8005b58:	f7ff ff3c 	bl	80059d4 <PCBCells_CAN_PackCAN2Temps>
- 8005b5c:	bf00      	nop
- 8005b5e:	3708      	adds	r7, #8
- 8005b60:	46bd      	mov	sp, r7
- 8005b62:	bd80      	pop	{r7, pc}
+ 8005b30:	b580      	push	{r7, lr}
+ 8005b32:	b082      	sub	sp, #8
+ 8005b34:	af00      	add	r7, sp, #0
+ 8005b36:	6078      	str	r0, [r7, #4]
+ 8005b38:	2108      	movs	r1, #8
+ 8005b3a:	6878      	ldr	r0, [r7, #4]
+ 8005b3c:	f7ff ff3c 	bl	80059b8 <PCBCells_CAN_PackCAN2Temps>
+ 8005b40:	bf00      	nop
+ 8005b42:	3708      	adds	r7, #8
+ 8005b44:	46bd      	mov	sp, r7
+ 8005b46:	bd80      	pop	{r7, pc}
 
-08005b64 <PCBCells_Init>:
+08005b48 <PCBCells_Init>:
 /* Variables ----------------------------------------------------------------------------------  */
 static uint32_t lastTick; 		// static tick variable for providing LEDs blinking
 
 /* Functions' bodies --------------------------------------------------------------------------  */
 
 HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, ADC_HandleTypeDef* hadc2, CAN_HandleTypeDef* hcan){
- 8005b64:	b5b0      	push	{r4, r5, r7, lr}
- 8005b66:	b084      	sub	sp, #16
- 8005b68:	af00      	add	r7, sp, #0
- 8005b6a:	60f8      	str	r0, [r7, #12]
- 8005b6c:	60b9      	str	r1, [r7, #8]
- 8005b6e:	607a      	str	r2, [r7, #4]
- 8005b70:	603b      	str	r3, [r7, #0]
+ 8005b48:	b5b0      	push	{r4, r5, r7, lr}
+ 8005b4a:	b084      	sub	sp, #16
+ 8005b4c:	af00      	add	r7, sp, #0
+ 8005b4e:	60f8      	str	r0, [r7, #12]
+ 8005b50:	60b9      	str	r1, [r7, #8]
+ 8005b52:	607a      	str	r2, [r7, #4]
+ 8005b54:	603b      	str	r3, [r7, #0]
 
 	// Assigning peripherals' handles to PCBCells' objects
 	pc->pcadc.hadc1 = *hadc1;
- 8005b72:	68fa      	ldr	r2, [r7, #12]
- 8005b74:	68bb      	ldr	r3, [r7, #8]
- 8005b76:	4610      	mov	r0, r2
- 8005b78:	4619      	mov	r1, r3
- 8005b7a:	2350      	movs	r3, #80	@ 0x50
- 8005b7c:	461a      	mov	r2, r3
- 8005b7e:	f000 f9b7 	bl	8005ef0 <memcpy>
+ 8005b56:	68fa      	ldr	r2, [r7, #12]
+ 8005b58:	68bb      	ldr	r3, [r7, #8]
+ 8005b5a:	4610      	mov	r0, r2
+ 8005b5c:	4619      	mov	r1, r3
+ 8005b5e:	2350      	movs	r3, #80	@ 0x50
+ 8005b60:	461a      	mov	r2, r3
+ 8005b62:	f000 f9b7 	bl	8005ed4 <memcpy>
 	pc->pcadc.hadc2 = *hadc2;
- 8005b82:	68fb      	ldr	r3, [r7, #12]
- 8005b84:	687a      	ldr	r2, [r7, #4]
- 8005b86:	3350      	adds	r3, #80	@ 0x50
- 8005b88:	4611      	mov	r1, r2
- 8005b8a:	2250      	movs	r2, #80	@ 0x50
- 8005b8c:	4618      	mov	r0, r3
- 8005b8e:	f000 f9af 	bl	8005ef0 <memcpy>
+ 8005b66:	68fb      	ldr	r3, [r7, #12]
+ 8005b68:	687a      	ldr	r2, [r7, #4]
+ 8005b6a:	3350      	adds	r3, #80	@ 0x50
+ 8005b6c:	4611      	mov	r1, r2
+ 8005b6e:	2250      	movs	r2, #80	@ 0x50
+ 8005b70:	4618      	mov	r0, r3
+ 8005b72:	f000 f9af 	bl	8005ed4 <memcpy>
 	pc->pccan.hcan  = *hcan;
- 8005b92:	68fb      	ldr	r3, [r7, #12]
- 8005b94:	683a      	ldr	r2, [r7, #0]
- 8005b96:	f503 7404 	add.w	r4, r3, #528	@ 0x210
- 8005b9a:	4615      	mov	r5, r2
- 8005b9c:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
- 8005b9e:	c40f      	stmia	r4!, {r0, r1, r2, r3}
- 8005ba0:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
- 8005ba2:	c40f      	stmia	r4!, {r0, r1, r2, r3}
- 8005ba4:	e895 0003 	ldmia.w	r5, {r0, r1}
- 8005ba8:	e884 0003 	stmia.w	r4, {r0, r1}
+ 8005b76:	68fb      	ldr	r3, [r7, #12]
+ 8005b78:	683a      	ldr	r2, [r7, #0]
+ 8005b7a:	f503 7404 	add.w	r4, r3, #528	@ 0x210
+ 8005b7e:	4615      	mov	r5, r2
+ 8005b80:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+ 8005b82:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+ 8005b84:	cd0f      	ldmia	r5!, {r0, r1, r2, r3}
+ 8005b86:	c40f      	stmia	r4!, {r0, r1, r2, r3}
+ 8005b88:	e895 0003 	ldmia.w	r5, {r0, r1}
+ 8005b8c:	e884 0003 	stmia.w	r4, {r0, r1}
 
 	// Setting default status
 	pc->prevStatus = PCBCELLS_ACTIVE;
- 8005bac:	68fb      	ldr	r3, [r7, #12]
- 8005bae:	2200      	movs	r2, #0
- 8005bb0:	f883 26c0 	strb.w	r2, [r3, #1728]	@ 0x6c0
+ 8005b90:	68fb      	ldr	r3, [r7, #12]
+ 8005b92:	2200      	movs	r2, #0
+ 8005b94:	f883 26c0 	strb.w	r2, [r3, #1728]	@ 0x6c0
 	pc->currStatus = PCBCELLS_ACTIVE;;
- 8005bb4:	68fb      	ldr	r3, [r7, #12]
- 8005bb6:	2200      	movs	r2, #0
- 8005bb8:	f883 26c1 	strb.w	r2, [r3, #1729]	@ 0x6c1
+ 8005b98:	68fb      	ldr	r3, [r7, #12]
+ 8005b9a:	2200      	movs	r2, #0
+ 8005b9c:	f883 26c1 	strb.w	r2, [r3, #1729]	@ 0x6c1
 
 	// Reseting buffers
 	memset(pc->pcadc.PCBCells_temperatures, 0, sizeof(pc->pcadc.PCBCells_temperatures));
- 8005bbc:	68fb      	ldr	r3, [r7, #12]
- 8005bbe:	f503 7301 	add.w	r3, r3, #516	@ 0x204
- 8005bc2:	2209      	movs	r2, #9
- 8005bc4:	2100      	movs	r1, #0
- 8005bc6:	4618      	mov	r0, r3
- 8005bc8:	f000 f966 	bl	8005e98 <memset>
+ 8005ba0:	68fb      	ldr	r3, [r7, #12]
+ 8005ba2:	f503 7301 	add.w	r3, r3, #516	@ 0x204
+ 8005ba6:	2209      	movs	r2, #9
+ 8005ba8:	2100      	movs	r1, #0
+ 8005baa:	4618      	mov	r0, r3
+ 8005bac:	f000 f966 	bl	8005e7c <memset>
 
 	// Reading PCB Index
 	if(PCBCells_ConfigPCBIndex(pc) != HAL_OK){
- 8005bcc:	68f8      	ldr	r0, [r7, #12]
- 8005bce:	f000 f8bd 	bl	8005d4c <PCBCells_ConfigPCBIndex>
- 8005bd2:	4603      	mov	r3, r0
- 8005bd4:	2b00      	cmp	r3, #0
- 8005bd6:	d001      	beq.n	8005bdc <PCBCells_Init+0x78>
+ 8005bb0:	68f8      	ldr	r0, [r7, #12]
+ 8005bb2:	f000 f8bd 	bl	8005d30 <PCBCells_ConfigPCBIndex>
+ 8005bb6:	4603      	mov	r3, r0
+ 8005bb8:	2b00      	cmp	r3, #0
+ 8005bba:	d001      	beq.n	8005bc0 <PCBCells_Init+0x78>
 		return HAL_ERROR;
- 8005bd8:	2301      	movs	r3, #1
- 8005bda:	e048      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005bbc:	2301      	movs	r3, #1
+ 8005bbe:	e048      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 	// Init ADC1
 	if(ADC_Init(&pc->pcadc.hadc1, &pc->pcadc.badc1, &pc->pcadc.cadc1) != HAL_OK){
- 8005bdc:	68f8      	ldr	r0, [r7, #12]
- 8005bde:	68fb      	ldr	r3, [r7, #12]
- 8005be0:	f103 01ac 	add.w	r1, r3, #172	@ 0xac
- 8005be4:	68fb      	ldr	r3, [r7, #12]
- 8005be6:	33a0      	adds	r3, #160	@ 0xa0
- 8005be8:	461a      	mov	r2, r3
- 8005bea:	f7ff f813 	bl	8004c14 <ADC_Init>
- 8005bee:	4603      	mov	r3, r0
- 8005bf0:	2b00      	cmp	r3, #0
- 8005bf2:	d001      	beq.n	8005bf8 <PCBCells_Init+0x94>
+ 8005bc0:	68f8      	ldr	r0, [r7, #12]
+ 8005bc2:	68fb      	ldr	r3, [r7, #12]
+ 8005bc4:	f103 01ac 	add.w	r1, r3, #172	@ 0xac
+ 8005bc8:	68fb      	ldr	r3, [r7, #12]
+ 8005bca:	33a0      	adds	r3, #160	@ 0xa0
+ 8005bcc:	461a      	mov	r2, r3
+ 8005bce:	f7ff f821 	bl	8004c14 <ADC_Init>
+ 8005bd2:	4603      	mov	r3, r0
+ 8005bd4:	2b00      	cmp	r3, #0
+ 8005bd6:	d001      	beq.n	8005bdc <PCBCells_Init+0x94>
 		return HAL_ERROR;
- 8005bf4:	2301      	movs	r3, #1
- 8005bf6:	e03a      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005bd8:	2301      	movs	r3, #1
+ 8005bda:	e03a      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 
 	// Init ADC2
 	if(ADC_Init(&pc->pcadc.hadc2, &pc->pcadc.badc2, &pc->pcadc.cadc2) != HAL_OK){
- 8005bf8:	68fb      	ldr	r3, [r7, #12]
- 8005bfa:	f103 0050 	add.w	r0, r3, #80	@ 0x50
- 8005bfe:	68fb      	ldr	r3, [r7, #12]
- 8005c00:	f503 71ac 	add.w	r1, r3, #344	@ 0x158
- 8005c04:	68fb      	ldr	r3, [r7, #12]
- 8005c06:	33a5      	adds	r3, #165	@ 0xa5
- 8005c08:	461a      	mov	r2, r3
- 8005c0a:	f7ff f803 	bl	8004c14 <ADC_Init>
- 8005c0e:	4603      	mov	r3, r0
- 8005c10:	2b00      	cmp	r3, #0
- 8005c12:	d001      	beq.n	8005c18 <PCBCells_Init+0xb4>
+ 8005bdc:	68fb      	ldr	r3, [r7, #12]
+ 8005bde:	f103 0050 	add.w	r0, r3, #80	@ 0x50
+ 8005be2:	68fb      	ldr	r3, [r7, #12]
+ 8005be4:	f503 71ac 	add.w	r1, r3, #344	@ 0x158
+ 8005be8:	68fb      	ldr	r3, [r7, #12]
+ 8005bea:	33a5      	adds	r3, #165	@ 0xa5
+ 8005bec:	461a      	mov	r2, r3
+ 8005bee:	f7ff f811 	bl	8004c14 <ADC_Init>
+ 8005bf2:	4603      	mov	r3, r0
+ 8005bf4:	2b00      	cmp	r3, #0
+ 8005bf6:	d001      	beq.n	8005bfc <PCBCells_Init+0xb4>
 		return HAL_ERROR;
- 8005c14:	2301      	movs	r3, #1
- 8005c16:	e02a      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005bf8:	2301      	movs	r3, #1
+ 8005bfa:	e02a      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 	// Init dual mode conversion for ADC1 and ADC2
 	if(ADC_InitMultimode(&pc->pcadc.hadc1, &pc->pcadc.badc1) != HAL_OK){
- 8005c18:	68fa      	ldr	r2, [r7, #12]
- 8005c1a:	68fb      	ldr	r3, [r7, #12]
- 8005c1c:	33ac      	adds	r3, #172	@ 0xac
- 8005c1e:	4619      	mov	r1, r3
- 8005c20:	4610      	mov	r0, r2
- 8005c22:	f7ff f83f 	bl	8004ca4 <ADC_InitMultimode>
- 8005c26:	4603      	mov	r3, r0
- 8005c28:	2b00      	cmp	r3, #0
- 8005c2a:	d001      	beq.n	8005c30 <PCBCells_Init+0xcc>
+ 8005bfc:	68fa      	ldr	r2, [r7, #12]
+ 8005bfe:	68fb      	ldr	r3, [r7, #12]
+ 8005c00:	33ac      	adds	r3, #172	@ 0xac
+ 8005c02:	4619      	mov	r1, r3
+ 8005c04:	4610      	mov	r0, r2
+ 8005c06:	f7ff f84d 	bl	8004ca4 <ADC_InitMultimode>
+ 8005c0a:	4603      	mov	r3, r0
+ 8005c0c:	2b00      	cmp	r3, #0
+ 8005c0e:	d001      	beq.n	8005c14 <PCBCells_Init+0xcc>
 		return HAL_ERROR;
- 8005c2c:	2301      	movs	r3, #1
- 8005c2e:	e01e      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005c10:	2301      	movs	r3, #1
+ 8005c12:	e01e      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 	// Adding frames to CAN buffer
 	if(PCBCells_CAN_InitFrames(pc) != HAL_OK){
- 8005c30:	68f8      	ldr	r0, [r7, #12]
- 8005c32:	f7ff fda9 	bl	8005788 <PCBCells_CAN_InitFrames>
- 8005c36:	4603      	mov	r3, r0
- 8005c38:	2b00      	cmp	r3, #0
- 8005c3a:	d001      	beq.n	8005c40 <PCBCells_Init+0xdc>
+ 8005c14:	68f8      	ldr	r0, [r7, #12]
+ 8005c16:	f7ff fdb7 	bl	8005788 <PCBCells_CAN_InitFrames>
+ 8005c1a:	4603      	mov	r3, r0
+ 8005c1c:	2b00      	cmp	r3, #0
+ 8005c1e:	d001      	beq.n	8005c24 <PCBCells_Init+0xdc>
 		return HAL_ERROR;
- 8005c3c:	2301      	movs	r3, #1
- 8005c3e:	e016      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005c20:	2301      	movs	r3, #1
+ 8005c22:	e016      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 	//Init CAN
 	CAN_Init(&pc->pccan.hcan);
- 8005c40:	68fb      	ldr	r3, [r7, #12]
- 8005c42:	f503 7304 	add.w	r3, r3, #528	@ 0x210
- 8005c46:	4618      	mov	r0, r3
- 8005c48:	f7ff faa2 	bl	8005190 <CAN_Init>
+ 8005c24:	68fb      	ldr	r3, [r7, #12]
+ 8005c26:	f503 7304 	add.w	r3, r3, #528	@ 0x210
+ 8005c2a:	4618      	mov	r0, r3
+ 8005c2c:	f7ff fab0 	bl	8005190 <CAN_Init>
 
 	// Check if can was properly initialized
 	if(pc->pccan.hcan.Instance != CAN){
- 8005c4c:	68fb      	ldr	r3, [r7, #12]
- 8005c4e:	f8d3 3210 	ldr.w	r3, [r3, #528]	@ 0x210
- 8005c52:	4a09      	ldr	r2, [pc, #36]	@ (8005c78 <PCBCells_Init+0x114>)
- 8005c54:	4293      	cmp	r3, r2
- 8005c56:	d001      	beq.n	8005c5c <PCBCells_Init+0xf8>
+ 8005c30:	68fb      	ldr	r3, [r7, #12]
+ 8005c32:	f8d3 3210 	ldr.w	r3, [r3, #528]	@ 0x210
+ 8005c36:	4a09      	ldr	r2, [pc, #36]	@ (8005c5c <PCBCells_Init+0x114>)
+ 8005c38:	4293      	cmp	r3, r2
+ 8005c3a:	d001      	beq.n	8005c40 <PCBCells_Init+0xf8>
 		return HAL_ERROR;
- 8005c58:	2301      	movs	r3, #1
- 8005c5a:	e008      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005c3c:	2301      	movs	r3, #1
+ 8005c3e:	e008      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 	// Starting the rest peripherals
 	if(PCBCells_Peripherals_Start(pc) != HAL_OK){
- 8005c5c:	68f8      	ldr	r0, [r7, #12]
- 8005c5e:	f000 f842 	bl	8005ce6 <PCBCells_Peripherals_Start>
- 8005c62:	4603      	mov	r3, r0
- 8005c64:	2b00      	cmp	r3, #0
- 8005c66:	d001      	beq.n	8005c6c <PCBCells_Init+0x108>
+ 8005c40:	68f8      	ldr	r0, [r7, #12]
+ 8005c42:	f000 f842 	bl	8005cca <PCBCells_Peripherals_Start>
+ 8005c46:	4603      	mov	r3, r0
+ 8005c48:	2b00      	cmp	r3, #0
+ 8005c4a:	d001      	beq.n	8005c50 <PCBCells_Init+0x108>
 		return HAL_ERROR;
- 8005c68:	2301      	movs	r3, #1
- 8005c6a:	e000      	b.n	8005c6e <PCBCells_Init+0x10a>
+ 8005c4c:	2301      	movs	r3, #1
+ 8005c4e:	e000      	b.n	8005c52 <PCBCells_Init+0x10a>
 	}
 
 	return HAL_OK;
- 8005c6c:	2300      	movs	r3, #0
+ 8005c50:	2300      	movs	r3, #0
 }
- 8005c6e:	4618      	mov	r0, r3
- 8005c70:	3710      	adds	r7, #16
- 8005c72:	46bd      	mov	sp, r7
- 8005c74:	bdb0      	pop	{r4, r5, r7, pc}
- 8005c76:	bf00      	nop
- 8005c78:	40006400 	.word	0x40006400
+ 8005c52:	4618      	mov	r0, r3
+ 8005c54:	3710      	adds	r7, #16
+ 8005c56:	46bd      	mov	sp, r7
+ 8005c58:	bdb0      	pop	{r4, r5, r7, pc}
+ 8005c5a:	bf00      	nop
+ 8005c5c:	40006400 	.word	0x40006400
 
-08005c7c <PCBCells_Mode_Normal>:
+08005c60 <PCBCells_Mode_Normal>:
 
 HAL_StatusTypeDef PCBCells_Mode_Normal(PCBCells_TypeDef* pc){
- 8005c7c:	b580      	push	{r7, lr}
- 8005c7e:	b082      	sub	sp, #8
- 8005c80:	af00      	add	r7, sp, #0
- 8005c82:	6078      	str	r0, [r7, #4]
+ 8005c60:	b580      	push	{r7, lr}
+ 8005c62:	b082      	sub	sp, #8
+ 8005c64:	af00      	add	r7, sp, #0
+ 8005c66:	6078      	str	r0, [r7, #4]
 
 	// check if change of status occurred
 	if(pc->prevStatus != PCBCELLS_ACTIVE){
- 8005c84:	687b      	ldr	r3, [r7, #4]
- 8005c86:	f893 36c0 	ldrb.w	r3, [r3, #1728]	@ 0x6c0
- 8005c8a:	2b00      	cmp	r3, #0
- 8005c8c:	d00b      	beq.n	8005ca6 <PCBCells_Mode_Normal+0x2a>
+ 8005c68:	687b      	ldr	r3, [r7, #4]
+ 8005c6a:	f893 36c0 	ldrb.w	r3, [r3, #1728]	@ 0x6c0
+ 8005c6e:	2b00      	cmp	r3, #0
+ 8005c70:	d00b      	beq.n	8005c8a <PCBCells_Mode_Normal+0x2a>
 
 		// start peripherals
 		if(PCBCells_Peripherals_Start(pc) != HAL_OK){
- 8005c8e:	6878      	ldr	r0, [r7, #4]
- 8005c90:	f000 f829 	bl	8005ce6 <PCBCells_Peripherals_Start>
- 8005c94:	4603      	mov	r3, r0
- 8005c96:	2b00      	cmp	r3, #0
- 8005c98:	d001      	beq.n	8005c9e <PCBCells_Mode_Normal+0x22>
+ 8005c72:	6878      	ldr	r0, [r7, #4]
+ 8005c74:	f000 f829 	bl	8005cca <PCBCells_Peripherals_Start>
+ 8005c78:	4603      	mov	r3, r0
+ 8005c7a:	2b00      	cmp	r3, #0
+ 8005c7c:	d001      	beq.n	8005c82 <PCBCells_Mode_Normal+0x22>
 			return HAL_ERROR;
- 8005c9a:	2301      	movs	r3, #1
- 8005c9c:	e014      	b.n	8005cc8 <PCBCells_Mode_Normal+0x4c>
+ 8005c7e:	2301      	movs	r3, #1
+ 8005c80:	e014      	b.n	8005cac <PCBCells_Mode_Normal+0x4c>
 		}
 
 		// restore pervStatus flag to prevent multi start of peripherals
 		pc->prevStatus = PCBCELLS_ACTIVE;
- 8005c9e:	687b      	ldr	r3, [r7, #4]
- 8005ca0:	2200      	movs	r2, #0
- 8005ca2:	f883 26c0 	strb.w	r2, [r3, #1728]	@ 0x6c0
+ 8005c82:	687b      	ldr	r3, [r7, #4]
+ 8005c84:	2200      	movs	r2, #0
+ 8005c86:	f883 26c0 	strb.w	r2, [r3, #1728]	@ 0x6c0
 
 	}
 
 	// Read Channels of ADC
 	if(PCBCells_ADC_ReadValues(pc) != HAL_OK){
- 8005ca6:	6878      	ldr	r0, [r7, #4]
- 8005ca8:	f7ff fb88 	bl	80053bc <PCBCells_ADC_ReadValues>
- 8005cac:	4603      	mov	r3, r0
- 8005cae:	2b00      	cmp	r3, #0
- 8005cb0:	d001      	beq.n	8005cb6 <PCBCells_Mode_Normal+0x3a>
+ 8005c8a:	6878      	ldr	r0, [r7, #4]
+ 8005c8c:	f7ff fb96 	bl	80053bc <PCBCells_ADC_ReadValues>
+ 8005c90:	4603      	mov	r3, r0
+ 8005c92:	2b00      	cmp	r3, #0
+ 8005c94:	d001      	beq.n	8005c9a <PCBCells_Mode_Normal+0x3a>
 		return HAL_ERROR;
- 8005cb2:	2301      	movs	r3, #1
- 8005cb4:	e008      	b.n	8005cc8 <PCBCells_Mode_Normal+0x4c>
+ 8005c96:	2301      	movs	r3, #1
+ 8005c98:	e008      	b.n	8005cac <PCBCells_Mode_Normal+0x4c>
 	}
 
 	// Send Data via CAN
 	if(PCBCells_CAN_SendFrames(pc) != HAL_OK){
- 8005cb6:	6878      	ldr	r0, [r7, #4]
- 8005cb8:	f7ff fe44 	bl	8005944 <PCBCells_CAN_SendFrames>
- 8005cbc:	4603      	mov	r3, r0
- 8005cbe:	2b00      	cmp	r3, #0
- 8005cc0:	d001      	beq.n	8005cc6 <PCBCells_Mode_Normal+0x4a>
+ 8005c9a:	6878      	ldr	r0, [r7, #4]
+ 8005c9c:	f7ff fe48 	bl	8005930 <PCBCells_CAN_SendFrames>
+ 8005ca0:	4603      	mov	r3, r0
+ 8005ca2:	2b00      	cmp	r3, #0
+ 8005ca4:	d001      	beq.n	8005caa <PCBCells_Mode_Normal+0x4a>
 		return HAL_ERROR;
- 8005cc2:	2301      	movs	r3, #1
- 8005cc4:	e000      	b.n	8005cc8 <PCBCells_Mode_Normal+0x4c>
+ 8005ca6:	2301      	movs	r3, #1
+ 8005ca8:	e000      	b.n	8005cac <PCBCells_Mode_Normal+0x4c>
 	}
 
 	return HAL_OK;
- 8005cc6:	2300      	movs	r3, #0
+ 8005caa:	2300      	movs	r3, #0
 }
- 8005cc8:	4618      	mov	r0, r3
- 8005cca:	3708      	adds	r7, #8
- 8005ccc:	46bd      	mov	sp, r7
- 8005cce:	bd80      	pop	{r7, pc}
+ 8005cac:	4618      	mov	r0, r3
+ 8005cae:	3708      	adds	r7, #8
+ 8005cb0:	46bd      	mov	sp, r7
+ 8005cb2:	bd80      	pop	{r7, pc}
 
-08005cd0 <PCBCells_Mode_Error>:
+08005cb4 <PCBCells_Mode_Error>:
 
 
 HAL_StatusTypeDef PCBCells_Mode_Error(PCBCells_TypeDef* pc){
- 8005cd0:	b480      	push	{r7}
- 8005cd2:	b083      	sub	sp, #12
- 8005cd4:	af00      	add	r7, sp, #0
- 8005cd6:	6078      	str	r0, [r7, #4]
+ 8005cb4:	b480      	push	{r7}
+ 8005cb6:	b083      	sub	sp, #12
+ 8005cb8:	af00      	add	r7, sp, #0
+ 8005cba:	6078      	str	r0, [r7, #4]
 
 	/*
 	 * Under constructions
 	 */
 
 	return HAL_OK;
- 8005cd8:	2300      	movs	r3, #0
+ 8005cbc:	2300      	movs	r3, #0
 }
- 8005cda:	4618      	mov	r0, r3
- 8005cdc:	370c      	adds	r7, #12
- 8005cde:	46bd      	mov	sp, r7
- 8005ce0:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8005ce4:	4770      	bx	lr
+ 8005cbe:	4618      	mov	r0, r3
+ 8005cc0:	370c      	adds	r7, #12
+ 8005cc2:	46bd      	mov	sp, r7
+ 8005cc4:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8005cc8:	4770      	bx	lr
 
-08005ce6 <PCBCells_Peripherals_Start>:
+08005cca <PCBCells_Peripherals_Start>:
 
 HAL_StatusTypeDef PCBCells_Peripherals_Start(PCBCells_TypeDef* pc){
- 8005ce6:	b580      	push	{r7, lr}
- 8005ce8:	b082      	sub	sp, #8
- 8005cea:	af00      	add	r7, sp, #0
- 8005cec:	6078      	str	r0, [r7, #4]
+ 8005cca:	b580      	push	{r7, lr}
+ 8005ccc:	b082      	sub	sp, #8
+ 8005cce:	af00      	add	r7, sp, #0
+ 8005cd0:	6078      	str	r0, [r7, #4]
 
 	// Starting ADC1
 	if(HAL_ADC_Start(&pc->pcadc.hadc1) != HAL_OK){
- 8005cee:	687b      	ldr	r3, [r7, #4]
- 8005cf0:	4618      	mov	r0, r3
- 8005cf2:	f7fb fa73 	bl	80011dc <HAL_ADC_Start>
- 8005cf6:	4603      	mov	r3, r0
- 8005cf8:	2b00      	cmp	r3, #0
- 8005cfa:	d001      	beq.n	8005d00 <PCBCells_Peripherals_Start+0x1a>
+ 8005cd2:	687b      	ldr	r3, [r7, #4]
+ 8005cd4:	4618      	mov	r0, r3
+ 8005cd6:	f7fb fa81 	bl	80011dc <HAL_ADC_Start>
+ 8005cda:	4603      	mov	r3, r0
+ 8005cdc:	2b00      	cmp	r3, #0
+ 8005cde:	d001      	beq.n	8005ce4 <PCBCells_Peripherals_Start+0x1a>
 		return HAL_ERROR;
- 8005cfc:	2301      	movs	r3, #1
- 8005cfe:	e021      	b.n	8005d44 <PCBCells_Peripherals_Start+0x5e>
+ 8005ce0:	2301      	movs	r3, #1
+ 8005ce2:	e021      	b.n	8005d28 <PCBCells_Peripherals_Start+0x5e>
 	}
 
 	// Starting ADC2
 	if(HAL_ADC_Start(&pc->pcadc.hadc2) != HAL_OK){
- 8005d00:	687b      	ldr	r3, [r7, #4]
- 8005d02:	3350      	adds	r3, #80	@ 0x50
- 8005d04:	4618      	mov	r0, r3
- 8005d06:	f7fb fa69 	bl	80011dc <HAL_ADC_Start>
- 8005d0a:	4603      	mov	r3, r0
- 8005d0c:	2b00      	cmp	r3, #0
- 8005d0e:	d001      	beq.n	8005d14 <PCBCells_Peripherals_Start+0x2e>
+ 8005ce4:	687b      	ldr	r3, [r7, #4]
+ 8005ce6:	3350      	adds	r3, #80	@ 0x50
+ 8005ce8:	4618      	mov	r0, r3
+ 8005cea:	f7fb fa77 	bl	80011dc <HAL_ADC_Start>
+ 8005cee:	4603      	mov	r3, r0
+ 8005cf0:	2b00      	cmp	r3, #0
+ 8005cf2:	d001      	beq.n	8005cf8 <PCBCells_Peripherals_Start+0x2e>
 		return HAL_ERROR;
- 8005d10:	2301      	movs	r3, #1
- 8005d12:	e017      	b.n	8005d44 <PCBCells_Peripherals_Start+0x5e>
+ 8005cf4:	2301      	movs	r3, #1
+ 8005cf6:	e017      	b.n	8005d28 <PCBCells_Peripherals_Start+0x5e>
 	}
 
 	// Launching Dual Mode Conversion
 	if(HAL_ADCEx_MultiModeStart_DMA(&pc->pcadc.hadc1, (uint32_t*)pc->pcadc.badc1.ddma.BufferADC_Master, ADC_MAX_CHANNELS) != HAL_OK){
- 8005d14:	6878      	ldr	r0, [r7, #4]
- 8005d16:	687b      	ldr	r3, [r7, #4]
- 8005d18:	33ac      	adds	r3, #172	@ 0xac
- 8005d1a:	2205      	movs	r2, #5
- 8005d1c:	4619      	mov	r1, r3
- 8005d1e:	f7fb fe9d 	bl	8001a5c <HAL_ADCEx_MultiModeStart_DMA>
- 8005d22:	4603      	mov	r3, r0
- 8005d24:	2b00      	cmp	r3, #0
- 8005d26:	d001      	beq.n	8005d2c <PCBCells_Peripherals_Start+0x46>
+ 8005cf8:	6878      	ldr	r0, [r7, #4]
+ 8005cfa:	687b      	ldr	r3, [r7, #4]
+ 8005cfc:	33ac      	adds	r3, #172	@ 0xac
+ 8005cfe:	2205      	movs	r2, #5
+ 8005d00:	4619      	mov	r1, r3
+ 8005d02:	f7fb feab 	bl	8001a5c <HAL_ADCEx_MultiModeStart_DMA>
+ 8005d06:	4603      	mov	r3, r0
+ 8005d08:	2b00      	cmp	r3, #0
+ 8005d0a:	d001      	beq.n	8005d10 <PCBCells_Peripherals_Start+0x46>
 		return HAL_ERROR;
- 8005d28:	2301      	movs	r3, #1
- 8005d2a:	e00b      	b.n	8005d44 <PCBCells_Peripherals_Start+0x5e>
+ 8005d0c:	2301      	movs	r3, #1
+ 8005d0e:	e00b      	b.n	8005d28 <PCBCells_Peripherals_Start+0x5e>
 	}
 
 
 	// Starting CAN
 	if(HAL_CAN_Start(&pc->pccan.hcan) != HAL_OK){
- 8005d2c:	687b      	ldr	r3, [r7, #4]
- 8005d2e:	f503 7304 	add.w	r3, r3, #528	@ 0x210
- 8005d32:	4618      	mov	r0, r3
- 8005d34:	f7fc fe9b 	bl	8002a6e <HAL_CAN_Start>
- 8005d38:	4603      	mov	r3, r0
- 8005d3a:	2b00      	cmp	r3, #0
- 8005d3c:	d001      	beq.n	8005d42 <PCBCells_Peripherals_Start+0x5c>
+ 8005d10:	687b      	ldr	r3, [r7, #4]
+ 8005d12:	f503 7304 	add.w	r3, r3, #528	@ 0x210
+ 8005d16:	4618      	mov	r0, r3
+ 8005d18:	f7fc fea9 	bl	8002a6e <HAL_CAN_Start>
+ 8005d1c:	4603      	mov	r3, r0
+ 8005d1e:	2b00      	cmp	r3, #0
+ 8005d20:	d001      	beq.n	8005d26 <PCBCells_Peripherals_Start+0x5c>
 		return HAL_ERROR;
- 8005d3e:	2301      	movs	r3, #1
- 8005d40:	e000      	b.n	8005d44 <PCBCells_Peripherals_Start+0x5e>
+ 8005d22:	2301      	movs	r3, #1
+ 8005d24:	e000      	b.n	8005d28 <PCBCells_Peripherals_Start+0x5e>
 	}
 
 	return HAL_OK;
- 8005d42:	2300      	movs	r3, #0
+ 8005d26:	2300      	movs	r3, #0
 }
- 8005d44:	4618      	mov	r0, r3
- 8005d46:	3708      	adds	r7, #8
- 8005d48:	46bd      	mov	sp, r7
- 8005d4a:	bd80      	pop	{r7, pc}
+ 8005d28:	4618      	mov	r0, r3
+ 8005d2a:	3708      	adds	r7, #8
+ 8005d2c:	46bd      	mov	sp, r7
+ 8005d2e:	bd80      	pop	{r7, pc}
 
-08005d4c <PCBCells_ConfigPCBIndex>:
+08005d30 <PCBCells_ConfigPCBIndex>:
 	}
 
 	return HAL_OK;
 }
 
 HAL_StatusTypeDef PCBCells_ConfigPCBIndex(PCBCells_TypeDef* pc){
- 8005d4c:	b590      	push	{r4, r7, lr}
- 8005d4e:	b085      	sub	sp, #20
- 8005d50:	af00      	add	r7, sp, #0
- 8005d52:	6078      	str	r0, [r7, #4]
+ 8005d30:	b590      	push	{r4, r7, lr}
+ 8005d32:	b085      	sub	sp, #20
+ 8005d34:	af00      	add	r7, sp, #0
+ 8005d36:	6078      	str	r0, [r7, #4]
 
 	uint8_t index = 0;
- 8005d54:	2300      	movs	r3, #0
- 8005d56:	73fb      	strb	r3, [r7, #15]
+ 8005d38:	2300      	movs	r3, #0
+ 8005d3a:	73fb      	strb	r3, [r7, #15]
 
 	// Reading index, if resistor is soldered on PCB board, then he pulls to GND, otherwise software set pull-up resistor pulls to 3V3
 	index = (!HAL_GPIO_ReadPin(R1_GPIO_Port, R1_Pin) << 2) |
- 8005d58:	f44f 7180 	mov.w	r1, #256	@ 0x100
- 8005d5c:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
- 8005d60:	f7fd fbda 	bl	8003518 <HAL_GPIO_ReadPin>
- 8005d64:	4603      	mov	r3, r0
- 8005d66:	2b00      	cmp	r3, #0
- 8005d68:	d101      	bne.n	8005d6e <PCBCells_ConfigPCBIndex+0x22>
- 8005d6a:	2404      	movs	r4, #4
- 8005d6c:	e000      	b.n	8005d70 <PCBCells_ConfigPCBIndex+0x24>
- 8005d6e:	2400      	movs	r4, #0
+ 8005d3c:	f44f 7180 	mov.w	r1, #256	@ 0x100
+ 8005d40:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
+ 8005d44:	f7fd fbe8 	bl	8003518 <HAL_GPIO_ReadPin>
+ 8005d48:	4603      	mov	r3, r0
+ 8005d4a:	2b00      	cmp	r3, #0
+ 8005d4c:	d101      	bne.n	8005d52 <PCBCells_ConfigPCBIndex+0x22>
+ 8005d4e:	2404      	movs	r4, #4
+ 8005d50:	e000      	b.n	8005d54 <PCBCells_ConfigPCBIndex+0x24>
+ 8005d52:	2400      	movs	r4, #0
 			(!HAL_GPIO_ReadPin(R2_GPIO_Port, R2_Pin) << 1) |
- 8005d70:	f44f 7100 	mov.w	r1, #512	@ 0x200
+ 8005d54:	f44f 7100 	mov.w	r1, #512	@ 0x200
+ 8005d58:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
+ 8005d5c:	f7fd fbdc 	bl	8003518 <HAL_GPIO_ReadPin>
+ 8005d60:	4603      	mov	r3, r0
+	index = (!HAL_GPIO_ReadPin(R1_GPIO_Port, R1_Pin) << 2) |
+ 8005d62:	2b00      	cmp	r3, #0
+ 8005d64:	d101      	bne.n	8005d6a <PCBCells_ConfigPCBIndex+0x3a>
+ 8005d66:	2302      	movs	r3, #2
+ 8005d68:	e000      	b.n	8005d6c <PCBCells_ConfigPCBIndex+0x3c>
+ 8005d6a:	2300      	movs	r3, #0
+ 8005d6c:	4323      	orrs	r3, r4
+ 8005d6e:	b25c      	sxtb	r4, r3
+			 !HAL_GPIO_ReadPin(R3_GPIO_Port, R3_Pin);
+ 8005d70:	f44f 6180 	mov.w	r1, #1024	@ 0x400
  8005d74:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
  8005d78:	f7fd fbce 	bl	8003518 <HAL_GPIO_ReadPin>
  8005d7c:	4603      	mov	r3, r0
-	index = (!HAL_GPIO_ReadPin(R1_GPIO_Port, R1_Pin) << 2) |
  8005d7e:	2b00      	cmp	r3, #0
- 8005d80:	d101      	bne.n	8005d86 <PCBCells_ConfigPCBIndex+0x3a>
- 8005d82:	2302      	movs	r3, #2
- 8005d84:	e000      	b.n	8005d88 <PCBCells_ConfigPCBIndex+0x3c>
- 8005d86:	2300      	movs	r3, #0
- 8005d88:	4323      	orrs	r3, r4
- 8005d8a:	b25c      	sxtb	r4, r3
-			 !HAL_GPIO_ReadPin(R3_GPIO_Port, R3_Pin);
- 8005d8c:	f44f 6180 	mov.w	r1, #1024	@ 0x400
- 8005d90:	f04f 4090 	mov.w	r0, #1207959552	@ 0x48000000
- 8005d94:	f7fd fbc0 	bl	8003518 <HAL_GPIO_ReadPin>
- 8005d98:	4603      	mov	r3, r0
- 8005d9a:	2b00      	cmp	r3, #0
- 8005d9c:	bf0c      	ite	eq
- 8005d9e:	2301      	moveq	r3, #1
- 8005da0:	2300      	movne	r3, #0
- 8005da2:	b2db      	uxtb	r3, r3
- 8005da4:	b25b      	sxtb	r3, r3
+ 8005d80:	bf0c      	ite	eq
+ 8005d82:	2301      	moveq	r3, #1
+ 8005d84:	2300      	movne	r3, #0
+ 8005d86:	b2db      	uxtb	r3, r3
+ 8005d88:	b25b      	sxtb	r3, r3
 			(!HAL_GPIO_ReadPin(R2_GPIO_Port, R2_Pin) << 1) |
- 8005da6:	4323      	orrs	r3, r4
- 8005da8:	b25b      	sxtb	r3, r3
+ 8005d8a:	4323      	orrs	r3, r4
+ 8005d8c:	b25b      	sxtb	r3, r3
 	index = (!HAL_GPIO_ReadPin(R1_GPIO_Port, R1_Pin) << 2) |
- 8005daa:	73fb      	strb	r3, [r7, #15]
+ 8005d8e:	73fb      	strb	r3, [r7, #15]
 
 	// checking if index is in correct range
 	if(index > 7 || index < 1){
- 8005dac:	7bfb      	ldrb	r3, [r7, #15]
- 8005dae:	2b07      	cmp	r3, #7
- 8005db0:	d802      	bhi.n	8005db8 <PCBCells_ConfigPCBIndex+0x6c>
- 8005db2:	7bfb      	ldrb	r3, [r7, #15]
- 8005db4:	2b00      	cmp	r3, #0
- 8005db6:	d101      	bne.n	8005dbc <PCBCells_ConfigPCBIndex+0x70>
+ 8005d90:	7bfb      	ldrb	r3, [r7, #15]
+ 8005d92:	2b07      	cmp	r3, #7
+ 8005d94:	d802      	bhi.n	8005d9c <PCBCells_ConfigPCBIndex+0x6c>
+ 8005d96:	7bfb      	ldrb	r3, [r7, #15]
+ 8005d98:	2b00      	cmp	r3, #0
+ 8005d9a:	d101      	bne.n	8005da0 <PCBCells_ConfigPCBIndex+0x70>
 		return HAL_ERROR;
- 8005db8:	2301      	movs	r3, #1
- 8005dba:	e00b      	b.n	8005dd4 <PCBCells_ConfigPCBIndex+0x88>
+ 8005d9c:	2301      	movs	r3, #1
+ 8005d9e:	e00b      	b.n	8005db8 <PCBCells_ConfigPCBIndex+0x88>
 	}
 
 	// assign index to PCBCells field
 	pc->packetIndex = index;
- 8005dbc:	7bfb      	ldrb	r3, [r7, #15]
- 8005dbe:	f003 0307 	and.w	r3, r3, #7
- 8005dc2:	b2d9      	uxtb	r1, r3
- 8005dc4:	687a      	ldr	r2, [r7, #4]
- 8005dc6:	f892 36c2 	ldrb.w	r3, [r2, #1730]	@ 0x6c2
- 8005dca:	f361 0302 	bfi	r3, r1, #0, #3
- 8005dce:	f882 36c2 	strb.w	r3, [r2, #1730]	@ 0x6c2
+ 8005da0:	7bfb      	ldrb	r3, [r7, #15]
+ 8005da2:	f003 0307 	and.w	r3, r3, #7
+ 8005da6:	b2d9      	uxtb	r1, r3
+ 8005da8:	687a      	ldr	r2, [r7, #4]
+ 8005daa:	f892 36c2 	ldrb.w	r3, [r2, #1730]	@ 0x6c2
+ 8005dae:	f361 0302 	bfi	r3, r1, #0, #3
+ 8005db2:	f882 36c2 	strb.w	r3, [r2, #1730]	@ 0x6c2
 
 	return HAL_OK;
- 8005dd2:	2300      	movs	r3, #0
+ 8005db6:	2300      	movs	r3, #0
 }
- 8005dd4:	4618      	mov	r0, r3
- 8005dd6:	3714      	adds	r7, #20
- 8005dd8:	46bd      	mov	sp, r7
- 8005dda:	bd90      	pop	{r4, r7, pc}
+ 8005db8:	4618      	mov	r0, r3
+ 8005dba:	3714      	adds	r7, #20
+ 8005dbc:	46bd      	mov	sp, r7
+ 8005dbe:	bd90      	pop	{r4, r7, pc}
 
-08005ddc <PCBCells_Mode_Change>:
+08005dc0 <PCBCells_Mode_Change>:
 
 
 HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusTypeDef_e status){
- 8005ddc:	b480      	push	{r7}
- 8005dde:	b083      	sub	sp, #12
- 8005de0:	af00      	add	r7, sp, #0
- 8005de2:	6078      	str	r0, [r7, #4]
- 8005de4:	460b      	mov	r3, r1
- 8005de6:	70fb      	strb	r3, [r7, #3]
+ 8005dc0:	b480      	push	{r7}
+ 8005dc2:	b083      	sub	sp, #12
+ 8005dc4:	af00      	add	r7, sp, #0
+ 8005dc6:	6078      	str	r0, [r7, #4]
+ 8005dc8:	460b      	mov	r3, r1
+ 8005dca:	70fb      	strb	r3, [r7, #3]
 
 	// checking if given mode is correct
 	if(status != PCBCELLS_ACTIVE && status != PCBCELLS_ERROR){
- 8005de8:	78fb      	ldrb	r3, [r7, #3]
- 8005dea:	2b00      	cmp	r3, #0
- 8005dec:	d004      	beq.n	8005df8 <PCBCells_Mode_Change+0x1c>
- 8005dee:	78fb      	ldrb	r3, [r7, #3]
- 8005df0:	2b01      	cmp	r3, #1
- 8005df2:	d001      	beq.n	8005df8 <PCBCells_Mode_Change+0x1c>
+ 8005dcc:	78fb      	ldrb	r3, [r7, #3]
+ 8005dce:	2b00      	cmp	r3, #0
+ 8005dd0:	d004      	beq.n	8005ddc <PCBCells_Mode_Change+0x1c>
+ 8005dd2:	78fb      	ldrb	r3, [r7, #3]
+ 8005dd4:	2b01      	cmp	r3, #1
+ 8005dd6:	d001      	beq.n	8005ddc <PCBCells_Mode_Change+0x1c>
 		return HAL_ERROR;
- 8005df4:	2301      	movs	r3, #1
- 8005df6:	e00a      	b.n	8005e0e <PCBCells_Mode_Change+0x32>
+ 8005dd8:	2301      	movs	r3, #1
+ 8005dda:	e00a      	b.n	8005df2 <PCBCells_Mode_Change+0x32>
 	}
 
-	// saving prev status
+	// saving previous status
 	pc->prevStatus = pc->currStatus;
- 8005df8:	687b      	ldr	r3, [r7, #4]
- 8005dfa:	f893 26c1 	ldrb.w	r2, [r3, #1729]	@ 0x6c1
- 8005dfe:	687b      	ldr	r3, [r7, #4]
- 8005e00:	f883 26c0 	strb.w	r2, [r3, #1728]	@ 0x6c0
+ 8005ddc:	687b      	ldr	r3, [r7, #4]
+ 8005dde:	f893 26c1 	ldrb.w	r2, [r3, #1729]	@ 0x6c1
+ 8005de2:	687b      	ldr	r3, [r7, #4]
+ 8005de4:	f883 26c0 	strb.w	r2, [r3, #1728]	@ 0x6c0
 
 	// changing current status
 	pc->currStatus = status;
- 8005e04:	687b      	ldr	r3, [r7, #4]
- 8005e06:	78fa      	ldrb	r2, [r7, #3]
- 8005e08:	f883 26c1 	strb.w	r2, [r3, #1729]	@ 0x6c1
+ 8005de8:	687b      	ldr	r3, [r7, #4]
+ 8005dea:	78fa      	ldrb	r2, [r7, #3]
+ 8005dec:	f883 26c1 	strb.w	r2, [r3, #1729]	@ 0x6c1
 
 	return HAL_OK;
- 8005e0c:	2300      	movs	r3, #0
+ 8005df0:	2300      	movs	r3, #0
 }
- 8005e0e:	4618      	mov	r0, r3
- 8005e10:	370c      	adds	r7, #12
- 8005e12:	46bd      	mov	sp, r7
- 8005e14:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8005e18:	4770      	bx	lr
+ 8005df2:	4618      	mov	r0, r3
+ 8005df4:	370c      	adds	r7, #12
+ 8005df6:	46bd      	mov	sp, r7
+ 8005df8:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8005dfc:	4770      	bx	lr
 	...
 
-08005e1c <PCBCells_Mode_Blink>:
+08005e00 <PCBCells_Mode_Blink>:
 
 void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
- 8005e1c:	b580      	push	{r7, lr}
- 8005e1e:	b082      	sub	sp, #8
- 8005e20:	af00      	add	r7, sp, #0
- 8005e22:	6078      	str	r0, [r7, #4]
+ 8005e00:	b580      	push	{r7, lr}
+ 8005e02:	b082      	sub	sp, #8
+ 8005e04:	af00      	add	r7, sp, #0
+ 8005e06:	6078      	str	r0, [r7, #4]
 
 	lastTick = HAL_GetTick();
- 8005e24:	f7fb f81e 	bl	8000e64 <HAL_GetTick>
- 8005e28:	4603      	mov	r3, r0
- 8005e2a:	4a19      	ldr	r2, [pc, #100]	@ (8005e90 <PCBCells_Mode_Blink+0x74>)
- 8005e2c:	6013      	str	r3, [r2, #0]
+ 8005e08:	f7fb f82c 	bl	8000e64 <HAL_GetTick>
+ 8005e0c:	4603      	mov	r3, r0
+ 8005e0e:	4a19      	ldr	r2, [pc, #100]	@ (8005e74 <PCBCells_Mode_Blink+0x74>)
+ 8005e10:	6013      	str	r3, [r2, #0]
 
 	if((HAL_GetTick() - lastTick -1) >= 500){
- 8005e2e:	f7fb f819 	bl	8000e64 <HAL_GetTick>
- 8005e32:	4602      	mov	r2, r0
- 8005e34:	4b16      	ldr	r3, [pc, #88]	@ (8005e90 <PCBCells_Mode_Blink+0x74>)
- 8005e36:	681b      	ldr	r3, [r3, #0]
- 8005e38:	1ad3      	subs	r3, r2, r3
- 8005e3a:	3b01      	subs	r3, #1
- 8005e3c:	f5b3 7ffa 	cmp.w	r3, #500	@ 0x1f4
- 8005e40:	d321      	bcc.n	8005e86 <PCBCells_Mode_Blink+0x6a>
+ 8005e12:	f7fb f827 	bl	8000e64 <HAL_GetTick>
+ 8005e16:	4602      	mov	r2, r0
+ 8005e18:	4b16      	ldr	r3, [pc, #88]	@ (8005e74 <PCBCells_Mode_Blink+0x74>)
+ 8005e1a:	681b      	ldr	r3, [r3, #0]
+ 8005e1c:	1ad3      	subs	r3, r2, r3
+ 8005e1e:	3b01      	subs	r3, #1
+ 8005e20:	f5b3 7ffa 	cmp.w	r3, #500	@ 0x1f4
+ 8005e24:	d321      	bcc.n	8005e6a <PCBCells_Mode_Blink+0x6a>
 
 		switch(pc->currStatus){
- 8005e42:	687b      	ldr	r3, [r7, #4]
- 8005e44:	f893 36c1 	ldrb.w	r3, [r3, #1729]	@ 0x6c1
- 8005e48:	2b00      	cmp	r3, #0
- 8005e4a:	d002      	beq.n	8005e52 <PCBCells_Mode_Blink+0x36>
- 8005e4c:	2b01      	cmp	r3, #1
- 8005e4e:	d00a      	beq.n	8005e66 <PCBCells_Mode_Blink+0x4a>
- 8005e50:	e013      	b.n	8005e7a <PCBCells_Mode_Blink+0x5e>
+ 8005e26:	687b      	ldr	r3, [r7, #4]
+ 8005e28:	f893 36c1 	ldrb.w	r3, [r3, #1729]	@ 0x6c1
+ 8005e2c:	2b00      	cmp	r3, #0
+ 8005e2e:	d002      	beq.n	8005e36 <PCBCells_Mode_Blink+0x36>
+ 8005e30:	2b01      	cmp	r3, #1
+ 8005e32:	d00a      	beq.n	8005e4a <PCBCells_Mode_Blink+0x4a>
+ 8005e34:	e013      	b.n	8005e5e <PCBCells_Mode_Blink+0x5e>
 			case PCBCELLS_ACTIVE:
 
 				// toggling LED state after 250ms
 				HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
- 8005e52:	2120      	movs	r1, #32
- 8005e54:	480f      	ldr	r0, [pc, #60]	@ (8005e94 <PCBCells_Mode_Blink+0x78>)
- 8005e56:	f7fd fb8f 	bl	8003578 <HAL_GPIO_TogglePin>
+ 8005e36:	2120      	movs	r1, #32
+ 8005e38:	480f      	ldr	r0, [pc, #60]	@ (8005e78 <PCBCells_Mode_Blink+0x78>)
+ 8005e3a:	f7fd fb9d 	bl	8003578 <HAL_GPIO_TogglePin>
 
 				// Turning off RED LED
 				HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_RESET);
- 8005e5a:	2200      	movs	r2, #0
- 8005e5c:	2140      	movs	r1, #64	@ 0x40
- 8005e5e:	480d      	ldr	r0, [pc, #52]	@ (8005e94 <PCBCells_Mode_Blink+0x78>)
- 8005e60:	f7fd fb72 	bl	8003548 <HAL_GPIO_WritePin>
+ 8005e3e:	2200      	movs	r2, #0
+ 8005e40:	2140      	movs	r1, #64	@ 0x40
+ 8005e42:	480d      	ldr	r0, [pc, #52]	@ (8005e78 <PCBCells_Mode_Blink+0x78>)
+ 8005e44:	f7fd fb80 	bl	8003548 <HAL_GPIO_WritePin>
 
 				break;
- 8005e64:	e009      	b.n	8005e7a <PCBCells_Mode_Blink+0x5e>
+ 8005e48:	e009      	b.n	8005e5e <PCBCells_Mode_Blink+0x5e>
 			case PCBCELLS_ERROR:
 
 				// Turning off Green LED
 				HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, GPIO_PIN_RESET);
- 8005e66:	2200      	movs	r2, #0
- 8005e68:	2120      	movs	r1, #32
- 8005e6a:	480a      	ldr	r0, [pc, #40]	@ (8005e94 <PCBCells_Mode_Blink+0x78>)
- 8005e6c:	f7fd fb6c 	bl	8003548 <HAL_GPIO_WritePin>
+ 8005e4a:	2200      	movs	r2, #0
+ 8005e4c:	2120      	movs	r1, #32
+ 8005e4e:	480a      	ldr	r0, [pc, #40]	@ (8005e78 <PCBCells_Mode_Blink+0x78>)
+ 8005e50:	f7fd fb7a 	bl	8003548 <HAL_GPIO_WritePin>
 
 				// Turning on RED LED
 				HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
- 8005e70:	2140      	movs	r1, #64	@ 0x40
- 8005e72:	4808      	ldr	r0, [pc, #32]	@ (8005e94 <PCBCells_Mode_Blink+0x78>)
- 8005e74:	f7fd fb80 	bl	8003578 <HAL_GPIO_TogglePin>
+ 8005e54:	2140      	movs	r1, #64	@ 0x40
+ 8005e56:	4808      	ldr	r0, [pc, #32]	@ (8005e78 <PCBCells_Mode_Blink+0x78>)
+ 8005e58:	f7fd fb8e 	bl	8003578 <HAL_GPIO_TogglePin>
 
 				break;
- 8005e78:	bf00      	nop
+ 8005e5c:	bf00      	nop
 		}
 
 		lastTick = HAL_GetTick() - 1;
- 8005e7a:	f7fa fff3 	bl	8000e64 <HAL_GetTick>
- 8005e7e:	4603      	mov	r3, r0
- 8005e80:	3b01      	subs	r3, #1
- 8005e82:	4a03      	ldr	r2, [pc, #12]	@ (8005e90 <PCBCells_Mode_Blink+0x74>)
- 8005e84:	6013      	str	r3, [r2, #0]
+ 8005e5e:	f7fb f801 	bl	8000e64 <HAL_GetTick>
+ 8005e62:	4603      	mov	r3, r0
+ 8005e64:	3b01      	subs	r3, #1
+ 8005e66:	4a03      	ldr	r2, [pc, #12]	@ (8005e74 <PCBCells_Mode_Blink+0x74>)
+ 8005e68:	6013      	str	r3, [r2, #0]
 	}
 }
- 8005e86:	bf00      	nop
- 8005e88:	3708      	adds	r7, #8
- 8005e8a:	46bd      	mov	sp, r7
- 8005e8c:	bd80      	pop	{r7, pc}
- 8005e8e:	bf00      	nop
- 8005e90:	200008d8 	.word	0x200008d8
- 8005e94:	48000400 	.word	0x48000400
+ 8005e6a:	bf00      	nop
+ 8005e6c:	3708      	adds	r7, #8
+ 8005e6e:	46bd      	mov	sp, r7
+ 8005e70:	bd80      	pop	{r7, pc}
+ 8005e72:	bf00      	nop
+ 8005e74:	200008d8 	.word	0x200008d8
+ 8005e78:	48000400 	.word	0x48000400
 
-08005e98 <memset>:
- 8005e98:	4402      	add	r2, r0
- 8005e9a:	4603      	mov	r3, r0
- 8005e9c:	4293      	cmp	r3, r2
- 8005e9e:	d100      	bne.n	8005ea2 <memset+0xa>
- 8005ea0:	4770      	bx	lr
- 8005ea2:	f803 1b01 	strb.w	r1, [r3], #1
- 8005ea6:	e7f9      	b.n	8005e9c <memset+0x4>
+08005e7c <memset>:
+ 8005e7c:	4402      	add	r2, r0
+ 8005e7e:	4603      	mov	r3, r0
+ 8005e80:	4293      	cmp	r3, r2
+ 8005e82:	d100      	bne.n	8005e86 <memset+0xa>
+ 8005e84:	4770      	bx	lr
+ 8005e86:	f803 1b01 	strb.w	r1, [r3], #1
+ 8005e8a:	e7f9      	b.n	8005e80 <memset+0x4>
 
-08005ea8 <__libc_init_array>:
- 8005ea8:	b570      	push	{r4, r5, r6, lr}
- 8005eaa:	4d0d      	ldr	r5, [pc, #52]	@ (8005ee0 <__libc_init_array+0x38>)
- 8005eac:	4c0d      	ldr	r4, [pc, #52]	@ (8005ee4 <__libc_init_array+0x3c>)
- 8005eae:	1b64      	subs	r4, r4, r5
- 8005eb0:	10a4      	asrs	r4, r4, #2
- 8005eb2:	2600      	movs	r6, #0
- 8005eb4:	42a6      	cmp	r6, r4
- 8005eb6:	d109      	bne.n	8005ecc <__libc_init_array+0x24>
- 8005eb8:	4d0b      	ldr	r5, [pc, #44]	@ (8005ee8 <__libc_init_array+0x40>)
- 8005eba:	4c0c      	ldr	r4, [pc, #48]	@ (8005eec <__libc_init_array+0x44>)
- 8005ebc:	f000 f826 	bl	8005f0c <_init>
- 8005ec0:	1b64      	subs	r4, r4, r5
- 8005ec2:	10a4      	asrs	r4, r4, #2
- 8005ec4:	2600      	movs	r6, #0
- 8005ec6:	42a6      	cmp	r6, r4
- 8005ec8:	d105      	bne.n	8005ed6 <__libc_init_array+0x2e>
- 8005eca:	bd70      	pop	{r4, r5, r6, pc}
- 8005ecc:	f855 3b04 	ldr.w	r3, [r5], #4
- 8005ed0:	4798      	blx	r3
- 8005ed2:	3601      	adds	r6, #1
- 8005ed4:	e7ee      	b.n	8005eb4 <__libc_init_array+0xc>
- 8005ed6:	f855 3b04 	ldr.w	r3, [r5], #4
- 8005eda:	4798      	blx	r3
- 8005edc:	3601      	adds	r6, #1
- 8005ede:	e7f2      	b.n	8005ec6 <__libc_init_array+0x1e>
- 8005ee0:	080062a8 	.word	0x080062a8
- 8005ee4:	080062a8 	.word	0x080062a8
- 8005ee8:	080062a8 	.word	0x080062a8
- 8005eec:	080062ac 	.word	0x080062ac
+08005e8c <__libc_init_array>:
+ 8005e8c:	b570      	push	{r4, r5, r6, lr}
+ 8005e8e:	4d0d      	ldr	r5, [pc, #52]	@ (8005ec4 <__libc_init_array+0x38>)
+ 8005e90:	4c0d      	ldr	r4, [pc, #52]	@ (8005ec8 <__libc_init_array+0x3c>)
+ 8005e92:	1b64      	subs	r4, r4, r5
+ 8005e94:	10a4      	asrs	r4, r4, #2
+ 8005e96:	2600      	movs	r6, #0
+ 8005e98:	42a6      	cmp	r6, r4
+ 8005e9a:	d109      	bne.n	8005eb0 <__libc_init_array+0x24>
+ 8005e9c:	4d0b      	ldr	r5, [pc, #44]	@ (8005ecc <__libc_init_array+0x40>)
+ 8005e9e:	4c0c      	ldr	r4, [pc, #48]	@ (8005ed0 <__libc_init_array+0x44>)
+ 8005ea0:	f000 f826 	bl	8005ef0 <_init>
+ 8005ea4:	1b64      	subs	r4, r4, r5
+ 8005ea6:	10a4      	asrs	r4, r4, #2
+ 8005ea8:	2600      	movs	r6, #0
+ 8005eaa:	42a6      	cmp	r6, r4
+ 8005eac:	d105      	bne.n	8005eba <__libc_init_array+0x2e>
+ 8005eae:	bd70      	pop	{r4, r5, r6, pc}
+ 8005eb0:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8005eb4:	4798      	blx	r3
+ 8005eb6:	3601      	adds	r6, #1
+ 8005eb8:	e7ee      	b.n	8005e98 <__libc_init_array+0xc>
+ 8005eba:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8005ebe:	4798      	blx	r3
+ 8005ec0:	3601      	adds	r6, #1
+ 8005ec2:	e7f2      	b.n	8005eaa <__libc_init_array+0x1e>
+ 8005ec4:	0800628c 	.word	0x0800628c
+ 8005ec8:	0800628c 	.word	0x0800628c
+ 8005ecc:	0800628c 	.word	0x0800628c
+ 8005ed0:	08006290 	.word	0x08006290
 
-08005ef0 <memcpy>:
- 8005ef0:	440a      	add	r2, r1
- 8005ef2:	4291      	cmp	r1, r2
- 8005ef4:	f100 33ff 	add.w	r3, r0, #4294967295
- 8005ef8:	d100      	bne.n	8005efc <memcpy+0xc>
+08005ed4 <memcpy>:
+ 8005ed4:	440a      	add	r2, r1
+ 8005ed6:	4291      	cmp	r1, r2
+ 8005ed8:	f100 33ff 	add.w	r3, r0, #4294967295
+ 8005edc:	d100      	bne.n	8005ee0 <memcpy+0xc>
+ 8005ede:	4770      	bx	lr
+ 8005ee0:	b510      	push	{r4, lr}
+ 8005ee2:	f811 4b01 	ldrb.w	r4, [r1], #1
+ 8005ee6:	f803 4f01 	strb.w	r4, [r3, #1]!
+ 8005eea:	4291      	cmp	r1, r2
+ 8005eec:	d1f9      	bne.n	8005ee2 <memcpy+0xe>
+ 8005eee:	bd10      	pop	{r4, pc}
+
+08005ef0 <_init>:
+ 8005ef0:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8005ef2:	bf00      	nop
+ 8005ef4:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8005ef6:	bc08      	pop	{r3}
+ 8005ef8:	469e      	mov	lr, r3
  8005efa:	4770      	bx	lr
- 8005efc:	b510      	push	{r4, lr}
- 8005efe:	f811 4b01 	ldrb.w	r4, [r1], #1
- 8005f02:	f803 4f01 	strb.w	r4, [r3, #1]!
- 8005f06:	4291      	cmp	r1, r2
- 8005f08:	d1f9      	bne.n	8005efe <memcpy+0xe>
- 8005f0a:	bd10      	pop	{r4, pc}
 
-08005f0c <_init>:
- 8005f0c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8005f0e:	bf00      	nop
- 8005f10:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8005f12:	bc08      	pop	{r3}
- 8005f14:	469e      	mov	lr, r3
- 8005f16:	4770      	bx	lr
-
-08005f18 <_fini>:
- 8005f18:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8005f1a:	bf00      	nop
- 8005f1c:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8005f1e:	bc08      	pop	{r3}
- 8005f20:	469e      	mov	lr, r3
- 8005f22:	4770      	bx	lr
+08005efc <_fini>:
+ 8005efc:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8005efe:	bf00      	nop
+ 8005f00:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8005f02:	bc08      	pop	{r3}
+ 8005f04:	469e      	mov	lr, r3
+ 8005f06:	4770      	bx	lr

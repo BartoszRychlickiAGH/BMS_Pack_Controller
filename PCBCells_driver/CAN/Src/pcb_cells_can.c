@@ -102,10 +102,6 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 
 HAL_StatusTypeDef PCBCells_CAN_ConfigData(PCBCells_TypeDef* pc, CAN_ScheduledMsg* msg, uint8_t thermId){
 
-	// checking ascending CAN frames' IDs organization
-	int isEven = pc->packetIndex % 2; // 0 - even, 1 - odd
-
-
 	// organizing proper assignment
 	msg->GetData = CAN2_Therm_Handlers[thermId];
 
