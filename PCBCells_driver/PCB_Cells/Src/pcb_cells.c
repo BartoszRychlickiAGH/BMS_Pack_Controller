@@ -24,7 +24,7 @@
 #include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
-
+static uint32_t lastTick; 		// static tick variable for providing LEDs blinking
 
 /* Functions' bodies --------------------------------------------------------------------------  */
 
@@ -37,7 +37,7 @@ HAL_StatusTypeDef PCBCells_Init(PCBCells_TypeDef* pc, ADC_HandleTypeDef* hadc1, 
 
 	// Setting default status
 	pc->prevStatus = PCBCELLS_ACTIVE;
-	pc->currStatus = PCBCELLS_ACTIVE;;
+	pc->currStatus = PCBCELLS_ACTIVE;
 
 	// Reseting buffers
 	memset(pc->pcadc.PCBCells_temperatures, 0, sizeof(pc->pcadc.PCBCells_temperatures));
@@ -197,20 +197,49 @@ HAL_StatusTypeDef PCBCells_ConfigPCBIndex(PCBCells_TypeDef* pc){
 HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusTypeDef_e status){
 
 	// checking if given mode is correct
-	if(status != PCBCELLS_ACTIVE || status != PCBCELLS_ERROR){
+	if(status != PCBCELLS_ACTIVE && status != PCBCELLS_ERROR){
 		return HAL_ERROR;
 	}
 
-	// saving prev status
+	// saving previous status
 	pc->prevStatus = pc->currStatus;
 
-	// chaning current status
+	// changing current status
 	pc->currStatus = status;
 
 	return HAL_OK;
 }
 
+void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
 
+	lastTick = HAL_GetTick();
+
+	if((HAL_GetTick() - lastTick -1) >= 500){
+
+		switch(pc->currStatus){
+			case PCBCELLS_ACTIVE:
+
+				// toggling LED state after 250ms
+				HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
+
+				// Turning off RED LED
+				HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_RESET);
+
+				break;
+			case PCBCELLS_ERROR:
+
+				// Turning off Green LED
+				HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, GPIO_PIN_RESET);
+
+				// Turning on RED LED
+				HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
+
+				break;
+		}
+
+		lastTick = HAL_GetTick() - 1;
+	}
+}
 
 
 
