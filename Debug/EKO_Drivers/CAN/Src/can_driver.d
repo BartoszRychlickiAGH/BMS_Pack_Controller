@@ -28,8 +28,6 @@ EKO_Drivers/CAN/Src/can_driver.o: ../EKO_Drivers/CAN/Src/can_driver.c \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  ../EKO_Drivers/CAN/Inc/can_id_list.h
 ../EKO_Drivers/CAN/Inc/can_driver.h:
 ../Core/Inc/main.h:
@@ -61,6 +59,4 @@ EKO_Drivers/CAN/Src/can_driver.o: ../EKO_Drivers/CAN/Src/can_driver.c \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../EKO_Drivers/CAN/Inc/can_id_list.h:

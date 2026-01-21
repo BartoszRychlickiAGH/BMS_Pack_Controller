@@ -1,1 +1,19 @@
+<<<<<<< HEAD
 ../PCBCells_driver/CAN/Src/pcb_cells_can.c:24:19:PCBCells_CAN_ScaleValue	3
+=======
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:42:19:PCBCells_CAN_InitFrames	5
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:74:19:PCBCells_CAN_GetID	7
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:103:19:PCBCells_CAN_ConfigData	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:115:19:PCBCells_CAN_SendFrames	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:123:19:PCBCells_CAN_ScaleValue	3
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:141:6:PCBCells_CAN_PackCAN2Temps	10
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:180:6:PCBCells_CAN_Get_CAN2_Data_Therm1	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:181:6:PCBCells_CAN_Get_CAN2_Data_Therm2	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:182:6:PCBCells_CAN_Get_CAN2_Data_Therm3	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:183:6:PCBCells_CAN_Get_CAN2_Data_Therm4	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:184:6:PCBCells_CAN_Get_CAN2_Data_Therm5	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:185:6:PCBCells_CAN_Get_CAN2_Data_Therm6	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:186:6:PCBCells_CAN_Get_CAN2_Data_Therm7	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:187:6:PCBCells_CAN_Get_CAN2_Data_Therm8	1
+../PCBCells_driver/CAN/Src/pcb_cells_can.c:188:6:PCBCells_CAN_Get_CAN2_Data_Therm9	1
+>>>>>>> 284de66 (Refactor: added changes mentioned in comments made by copilot)

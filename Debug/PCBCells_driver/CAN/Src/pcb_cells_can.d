@@ -30,8 +30,6 @@ PCBCells_driver/CAN/Src/pcb_cells_can.o: \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  ../EKO_Drivers/ADC/Inc/adc_driver.h \
  ../EKO_Drivers/ADC/Inc/stm32_family.h \
  ../EKO_Drivers/CAN/Inc/can_driver.h ../EKO_Drivers/CAN/Inc/can_id_list.h \
@@ -67,8 +65,6 @@ PCBCells_driver/CAN/Src/pcb_cells_can.o: \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../EKO_Drivers/ADC/Inc/adc_driver.h:
 ../EKO_Drivers/ADC/Inc/stm32_family.h:
 ../EKO_Drivers/CAN/Inc/can_driver.h:

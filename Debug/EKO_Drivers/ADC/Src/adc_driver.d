@@ -28,8 +28,6 @@ EKO_Drivers/ADC/Src/adc_driver.o: ../EKO_Drivers/ADC/Src/adc_driver.c \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h \
  ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h \
- ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h \
  ../EKO_Drivers/ADC/Inc/stm32_family.h
 ../EKO_Drivers/ADC/Inc/adc_driver.h:
 ../Core/Inc/main.h:
@@ -61,6 +59,4 @@ EKO_Drivers/ADC/Src/adc_driver.o: ../EKO_Drivers/ADC/Src/adc_driver.c \
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_i2c_ex.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr.h:
 ../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_pwr_ex.h:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim.h:
-../Drivers/STM32F3xx_HAL_Driver/Inc/stm32f3xx_hal_tim_ex.h:
 ../EKO_Drivers/ADC/Inc/stm32_family.h:

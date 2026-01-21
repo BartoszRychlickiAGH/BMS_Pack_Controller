@@ -3,6 +3,6 @@
 ../EKO_Drivers/ADC/Src/adc_driver.c:128:19:ADC_ReadChannel	20
 ../EKO_Drivers/ADC/Src/adc_driver.c:248:27:ADC_GetValue	5
 ../EKO_Drivers/ADC/Src/adc_driver.c:270:20:HAL_ADC_ConvCpltCallback	1
-../EKO_Drivers/ADC/Src/adc_driver.c:281:20:ADC_ConfigGetRanksOfChannels	7
-../EKO_Drivers/ADC/Src/adc_driver.c:349:20:ADC_GetRank	4
-../EKO_Drivers/ADC/Src/adc_driver.c:376:19:ADC_Averaging	4
+../EKO_Drivers/ADC/Src/adc_driver.c:281:20:ADC_ConfigGetRanksOfChannels	8
+../EKO_Drivers/ADC/Src/adc_driver.c:357:20:ADC_GetRank	4
+../EKO_Drivers/ADC/Src/adc_driver.c:384:19:ADC_Averaging	4

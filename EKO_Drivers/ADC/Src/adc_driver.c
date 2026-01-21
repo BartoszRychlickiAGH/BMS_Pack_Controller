@@ -280,13 +280,21 @@ void               HAL_ADC_ConvCpltCallback(ADC_HandleTypeDef *hadc){
   */
 HAL_StatusTypeDef  ADC_ConfigGetRanksOfChannels(ADC_HandleTypeDef* hadc, ADC_ChannelsTypeDef* cadc, ADC_BufferTypeDef* badc){
 
+	// variable which stores number of ADC channels, which will be used in data conversion
+	uint32_t numberOfConversions = 0;
+
+#if defined(STM32F3)
+
+	numberOfConversions = ((uint8_t)(hadc->Instance->SQR1) & 0b1111) + 1;
+
+#else
 	//Reading number of channels to be converted
-	uint32_t numberOfConversions = ((uint8_t)(hadc->Instance->SQR1 >> 20)) + 1;
+	numberOfConversions = ((uint8_t)(hadc->Instance->SQR1 >> 20)) + 1;
 
+#endif
 
-	// Security check
-
-	if(numberOfConversions > ADC_MAX_CHANNELS){
+	// Security check if number of ADC's number of turned on channels was correctly calculated
+	if(numberOfConversions > ADC_MAX_CHANNELS || numberOfConversions < 1){
 		return HAL_ERROR;
 	}
 
