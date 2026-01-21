@@ -1,0 +1,18 @@
+<<<<<<< HEAD
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:29:19:PCBCells_Init	7
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:83:19:PCBCells_Mode_Normal	4
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:110:19:PCBCells_Mode_Error	1
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:119:19:PCBCells_Peripherals_Start	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:145:19:PCBCells_Peripherals_Stop	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:170:19:PCBCells_ConfigPCBIndex	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:191:19:PCBCells_Mode_Change	3
+=======
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:31:19:PCBCells_Init	8
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:87:19:PCBCells_Mode_Normal	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:116:19:PCBCells_Mode_Error	1
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:125:19:PCBCells_Peripherals_Start	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:151:19:PCBCells_Peripherals_Stop	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:176:19:PCBCells_ConfigPCBIndex	5
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:197:19:PCBCells_Mode_Change	3
+../PCBCells_driver/PCB_Cells/Src/pcb_cells.c:213:6:PCBCells_Mode_Blink	4
+>>>>>>> 284de66 (Refactor: added changes mentioned in comments made by copilot)

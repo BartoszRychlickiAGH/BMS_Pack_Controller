@@ -81,7 +81,7 @@ HAL_StatusTypeDef PCBCells_ADC2_ReadChannels(PCBCells_TypeDef* pc){
 			return HAL_ERROR;
 		}
 
-		// scaling and assigning temperature to Cells's PCB's object's field | second param is shifting with offset cause,
+		// scaling and assigning temperature to Cells's PCB's object's field
 		if(PCBCells_CAN_ScaleValue(pc, (uint8_t)(i + ADC_THERM_OFFSET), &adc1Temperature_f) != HAL_OK){
 			return HAL_ERROR;
 		}
@@ -201,7 +201,7 @@ float PCBCells_ADC_NTC_GetTemperature(float Rt){
 
 
 
-    // search for closes restistance
+    // search for closes resistance
     for (int i = 0; i < 100; ++i) {
 
     	// checking if exact R is higher and lower to the closes resistance from table

@@ -24,6 +24,10 @@
 #include "pcb_cells_adc.h"
 
 /* Variables ----------------------------------------------------------------------------------  */
+<<<<<<< HEAD
+=======
+static uint32_t lastTick; 		// static tick variable for providing LEDs blinking
+>>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 
 /* Functions' bodies --------------------------------------------------------------------------  */
 
@@ -211,6 +215,37 @@ HAL_StatusTypeDef PCBCells_Mode_Change(PCBCells_TypeDef* pc, PCBCells_StatusType
 
 void PCBCells_Mode_Blink(PCBCells_TypeDef* pc){
 
+<<<<<<< HEAD
+=======
+	lastTick = HAL_GetTick();
+
+	if((HAL_GetTick() - lastTick -1) >= 500){
+
+		switch(pc->currStatus){
+			case PCBCELLS_ACTIVE:
+
+				// toggling LED state after 250ms
+				HAL_GPIO_TogglePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin);
+
+				// Turning off RED LED
+				HAL_GPIO_WritePin(RED_LED_GPIO_Port, RED_LED_Pin, GPIO_PIN_RESET);
+
+				break;
+			case PCBCELLS_ERROR:
+
+				// Turning off Green LED
+				HAL_GPIO_WritePin(GREEN_LED_GPIO_Port, GREEN_LED_Pin, GPIO_PIN_RESET);
+
+				// Turning on RED LED
+				HAL_GPIO_TogglePin(RED_LED_GPIO_Port, RED_LED_Pin);
+
+				break;
+		}
+
+		lastTick = HAL_GetTick() - 1;
+	}
+}
+>>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 
 
 	if((HAL_GetTick() - lastTick -1) >= 500){

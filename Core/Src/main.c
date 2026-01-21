@@ -21,7 +21,6 @@
 #include "adc.h"
 #include "can.h"
 #include "dma.h"
-#include "tim.h"
 #include "gpio.h"
 
 /* Private includes ----------------------------------------------------------*/
@@ -95,12 +94,13 @@ int main(void)
   MX_ADC1_Init();
   MX_ADC2_Init();
   MX_CAN_Init();
-  MX_TIM3_Init();
   /* USER CODE BEGIN 2 */
 
   // Initialization of PCB Cells object
   if(PCBCells_Init(&pcbCells, &hadc1, &hadc2, &hcan) != HAL_OK){
-	  return HAL_ERROR;
+	  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
+		  // handling error
+	  }
   }
 
   /* USER CODE END 2 */
@@ -112,6 +112,9 @@ int main(void)
   lastTick = HAL_GetTick();
   while (1)
   {
+	  // Blink diode in order co-related to current Cells' PCB's state
+	  PCBCells_Mode_Blink(&pcbCells);
+
 
 	  // State machine
 	  switch(pcbCells.currStatus){
@@ -120,7 +123,9 @@ int main(void)
 		  case PCBCELLS_ACTIVE:
 
 			  if(PCBCells_Mode_Normal(&pcbCells) != HAL_OK){
-				  Error_Handler();
+				  if(PCBCells_Mode_Change(&pcbCells, PCBCELLS_ERROR) != HAL_OK){
+					  // handling error
+				  }
 			  }
 
 			  break;
@@ -129,17 +134,21 @@ int main(void)
 		  case PCBCELLS_ERROR:
 
 			  if(PCBCells_Mode_Error(&pcbCells) != HAL_OK){
-				  Error_Handler();
+				  // handling error
 			  }
 
 			  break;
 		  default:
-			  Error_Handler();
 
+			  // handling error
 			  break;
 	  }
 
+<<<<<<< HEAD
 	  PCBCells_Mode_Blink(&pcbCells);
+=======
+
+>>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 
     /* USER CODE END WHILE */
 

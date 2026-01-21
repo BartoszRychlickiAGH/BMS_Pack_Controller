@@ -70,8 +70,6 @@ typedef struct{
 	PCBCells_ADCTypeDef 	 pcadc;						/*< PCB's Cells ADC handle >*/
 	PCBCells_CANTypeDef 	 pccan;						/*< PCB's Cells CAN handle >*/
 
-	TIM_HandleTypeDef   	 htim;						/*< Handle to TIM >*/
-
 	PCBCells_StatusTypeDef_e prevStatus;				/*< PCB Cells previous status, in case change of status occured >*/
 	PCBCells_StatusTypeDef_e currStatus;				/*< PCB Cells current status >*/
 
