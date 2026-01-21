@@ -39,11 +39,7 @@ static uint8_t framesDescendingBaseId = 9;  // base unity number of id for desce
 
 extern PCBCells_TypeDef pcbCells;
 /* Functions' bodies --------------------------------------------------------------------------  */
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
+
 HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 
 	// Init object for CAn frame
@@ -57,20 +53,17 @@ HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 
 	for(int i = 0; i < 9; ++i){
 
-<<<<<<< HEAD
+
 		// config frames ID
-=======
+
 		// configuration frames ID
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 		if(PCBCells_CAN_GetID(pc, i, &msg.header.StdId) != HAL_OK){
 			return HAL_ERROR;
 		}
 
-<<<<<<< HEAD
-		// Configuring data for exact frame
-=======
+
 		// configuration data for exact frame
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
+
 		if(PCBCells_CAN_ConfigData(pc, &msg, i) != HAL_OK){
 			return HAL_ERROR;
 		}
@@ -86,32 +79,13 @@ HAL_StatusTypeDef PCBCells_CAN_InitFrames(PCBCells_TypeDef* pc){
 
 HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, uint32_t* Id){
 
-<<<<<<< HEAD
-	// check if correct framesIndex
-=======
 	// check if correct framesIndex was given
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 	if(frameIndex >= 9){
 		return HAL_ERROR;
 	}
 
-
-<<<<<<< HEAD
-	if(pc->packetIndex % 2 != 0){	// ID config for odd number of packet
-
-		*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + framesAscendingBaseId;
-
-	}else{ 							// ID config for even number of packet
-
-		*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + framesDescendingBaseId;
-
-	}
-=======
 	// Calculating Id for ascending or descending order of IDs assignment
 	*Id = PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + (pc->packetIndex % 2 != 0) ? framesAscendingBaseId : framesDescendingBaseId;
-
-
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 
 	// Checking if correct Id was assigned
 	if(*Id > (PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + 9) || *Id < (PCBCELLS_CAN_THERM_ID_BASE + pc->packetIndex * 10 + 1)){
@@ -123,35 +97,18 @@ HAL_StatusTypeDef PCBCells_CAN_GetID(PCBCells_TypeDef* pc, uint8_t frameIndex, u
 		return HAL_ERROR;
 	}
 
-<<<<<<< HEAD
-	// locking resereved ID and changing values of indicators
-	framesAscendingBaseId++;
-	framesDescendingBaseId--;
-
-=======
 	// locking reserved ID and changing values of indicators
 	framesAscendingBaseId++;
 	framesDescendingBaseId--;
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
+
 	return HAL_OK;
 }
 
 HAL_StatusTypeDef PCBCells_CAN_ConfigData(PCBCells_TypeDef* pc, CAN_ScheduledMsg* msg, uint8_t thermId){
 
-<<<<<<< HEAD
 	// organizing proper assignment
 	msg->GetData = CAN2_Therm_Handlers[thermId];
 
-
-=======
-	// checking ascending CAN frames' IDs organization
-	int isEven = pc->packetIndex % 2; // 0 - even, 1 - odd
-
-
-	// organizing proper assignment
-	msg->GetData = CAN2_Therm_Handlers[thermId];
-
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 	return HAL_OK;
 }
 
@@ -163,10 +120,7 @@ HAL_StatusTypeDef PCBCells_CAN_SendFrames(PCBCells_TypeDef* pc){
 	return HAL_OK;
 }
 
-<<<<<<< HEAD
-=======
->>>>>>> 284de66 (Refactor: added changes mentioned in comments made by copilot)
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
+
 HAL_StatusTypeDef PCBCells_CAN_ScaleValue(PCBCells_TypeDef* pc, uint8_t thermIndex, float* realValue){
 
 	// checking if given thermistor index is correct

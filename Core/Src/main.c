@@ -144,11 +144,8 @@ int main(void)
 			  break;
 	  }
 
-<<<<<<< HEAD
 	  PCBCells_Mode_Blink(&pcbCells);
-=======
 
->>>>>>> 9d602ad4846ef788db75f4eb320fb0b3a7836307
 
     /* USER CODE END WHILE */
 
